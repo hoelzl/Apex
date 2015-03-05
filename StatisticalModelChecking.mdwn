@@ -1,4 +1,4 @@
-# Pattern: Statistical Model Checking
+# Statistical Model Checking
 
 ## Intent
 

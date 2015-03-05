@@ -1,4 +1,4 @@
-# Pattern: Distributed Awareness Based Behavior
+# Distributed Awareness Based Behavior
 
 ## Intent
 

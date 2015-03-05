@@ -1,3 +1,3 @@
-# Pattern: Illusion of Stability
+# Illusion of Stability
 
 [[!tag pattern]]

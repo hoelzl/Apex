@@ -1,4 +1,4 @@
-# Pattern: Update Existing Knowledge Source
+# Update Existing Knowledge Source
 
 ## Specializes
 

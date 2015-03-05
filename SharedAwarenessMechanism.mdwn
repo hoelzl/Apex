@@ -1,4 +1,4 @@
-# Pattern: Shared Awareness Mechanism
+# Shared Awareness Mechanism
 
 ## Specializes
 

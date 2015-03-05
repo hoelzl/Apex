@@ -1,4 +1,4 @@
-# Pattern: Awareness-Mechanism<a id="sec-1"></a>
+# Awareness Mechanism
 
 ## Intent
 
@@ -16,13 +16,14 @@ An *awareness mechanism* consists of an *awareness model* which is
 *inversely connected* to the environment, *reasoners* that can draw
 inferences from the awareness model, and a *sensor system* that
 maintains the inverse connection. See below for a description of these
-terms and [<a href="#tcam">4</a>] for a detailed discussion. An awareness model is
-often a Multi-Model and a Deep Model, in particular it often combines
-Logical Models and Probabilistic Models.
+terms and [<a href="#tcam">4</a>] for a detailed discussion. An
+awareness model is often a [[MultiModel]] and a [[DeepModel]], in
+particular it often combines [[LogicalModel]]s and
+[[ProbabilisticModel]]s.
 
 ## Classification
 
-awareness, conceptual
+[[!taglink pattern/awareness]], [[!taglink pattern/conceptual]]
 
 ## Description
 

@@ -1,3 +1,3 @@
-# Pattern: Peer-to-Peer Learning
+# Peer-to-Peer Learning
 
 [[!tag pattern]]
