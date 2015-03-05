@@ -1,0 +1,8 @@
+# APEX: The ASCENS Pattern Explorer
+
+Good starting points to explore the pattern catalog are
+[[AwarenessMechanism]] or [[StatisticalModelChecking]]
+
+The following graphs shows the interdependencies between patterns.
+
+[[!linkmap pages="tagged(pattern)" width=8 height=25]]

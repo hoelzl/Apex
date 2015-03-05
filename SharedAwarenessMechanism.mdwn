@@ -1,0 +1,7 @@
+# Pattern: Shared Awareness Mechanism
+
+## Specializes
+
+[[AwarenessMechanism]]
+
+[[!tag pattern]]

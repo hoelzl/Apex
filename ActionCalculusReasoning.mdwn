@@ -1,0 +1,3 @@
+# Pattern: Action Calculus Reasoning
+
+[[!tag pattern]]

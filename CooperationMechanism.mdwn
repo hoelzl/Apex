@@ -1,0 +1,4 @@
+# Pattern: Cooperation Mechanism
+
+[[!tag pattern]]
+

@@ -1,0 +1,3 @@
+# Pattern: Attribute-Based Communication
+
+[[!tag pattern]]
