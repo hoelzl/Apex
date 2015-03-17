@@ -1,3 +1,69 @@
 # Tuple-Space-Based Coordination
 
+## Classification
+
+[[!taglink coordination]], [[!taglink distribution]]
+
+## Context
+
+In distributed systems it is often necessary for different components
+to synchronize their execution or for one component to wait until
+another component has performed a certain task.
+
+## Diagram/Structure
+
+The system consists of a tuple space, a special form of
+[[KnowledgeRepository]] that stores arbitrary tuples, and one or more
+agents (also called Service Components, SCs).
+
+## Description/Behavior
+
+Agents synchronize their behavior by agreeing on a format of tuples
+that describe the various stages of the common process or the
+conditions on which synchronization has to take place.  The agent
+responsible for completing a certain stage **put**s the corresponding
+tuple into the tuple space when it has completed the task.  Agents
+waiting for the result of that stage either **get** or **qry** the
+corresponding tuple, depending on whether they want to be the unique
+successor or whether they want to allow other agents to react to the
+completion of the stage as well.  In producer/consumer scenarios, the
+produced item can either itself serve as synchronization token, or it
+can be wrapped in a tuple to guarantee a common format for all
+results.  As an example, a simple producer might look as follows:
+
+    loop
+      local item = ... -- Perform work to create items
+      put(("new-item", item)
+    end
+
+A set of consumers for the generated items can then be written as
+follows:
+
+    loop
+      local item
+      item = get("new-item", ?item)
+      ... -- Do something with item
+    end
+
+Using this scheme, any numbers of consumers can concurrently process
+the items produced by the consumer.  If no items are available,
+consumers will automatically block until new items become available
+again.
+
+## Consequences
+
+Components can achieve a rich set of synchronization patterns using
+only **put**, **get** and **qry** requests.  Without variants of these
+primitives that time out, components may block whenever they request
+an item from the tuple space.
+
+## Implementation
+
+Tuple-Space-Based Coordination is the default coordination mechanism
+for the SCEL language and its jRESP implementation.  A lower-level
+implementation can be built on traditional network interfaces.  For
+example, implementations of the Hexameter protocol provide
+interoperable implementations of Tuple-Space-Based Coordination for a
+variety of programming lnaguages.
+
 [[!tag pattern]]

@@ -1,3 +1,88 @@
 # Action Calculus Reasoning
 
+## Specializes
+
+[[AutomatedReasoning]]
+
+## Classification
+
+[[!taglink reasoning]], [[!taglink awareness]]
+
+## Intent
+
+Allow agents to come up with solutions to situations that could not be
+provided at design time by reasoning about action-calculus formulae.
+
+## Context
+
+Agents often encounter situations for which no ready-made solution can
+be provided by the designers. In many cases, reasoning about these
+situations requires reasoning about the effect of actions while taking
+into account spatial, temporal and logical aspects.  For example,
+deducing "If I pick up the victim and carry it to the rescue area, the
+victim will receive medical treatmen within the next hour." requires
+all three types of reasoning.
+
+## Description/Behavior
+
+Action Calculus Reasoning is a special case of
+[[AutomatedReasoning]] where the [[KnowledgeRepository]] is
+represented as a set of formulae in an actions-calculus and the
+reasoning process is either full inference in predicate logic or a
+simpler form of reasoning, e.g., SLDNF resolution.  Suitable action
+calculi are, e.g., the situation calculus, the fluent calculus or the
+event calculus.
+
+
+## Consequences
+
+The consequences of using Action Calculus Reasoning depend on the
+logic and reasoning mechanisms used.
+
+Action Calculus Reasoning based on full first order logic using a
+theorem prover as reasoning mechanism is one of the most expressive
+variants of [[AutomatedReasoning]].  However it requires highly
+skilled modelers to provide a logical world model.  Without tuning the
+reasoning mechanism to the requirements of the application domain,
+reasoning times are likely to be prohibitively high.  By optimizing
+model and reasoner, the performance can often be improved
+significantly and may prove acceptable for high-level decision making
+in many scenarios.  However, reasoning times are alway unpredictable
+and mostly too high for time-critical tasks or low-level aspects of a
+system.  The reasoning process can be sped up, often by several orders
+of magnitude, if reasoning about historical facts is not performed
+using logical regression only but rather by looking up ground facts in
+a database.  Special-purpose reasoners for reasoning about particular
+domains, e.g., involving temporal or spatial properties, can also
+greatly enhance the performace.
+
+Action Calculus Reasoning based on logic programming generally has
+less severe performance restrictions, and it is easier to achieve the
+performance required for on-line reasoning.  However, the resulting
+system is much less expressive than a system using a full first-order
+representation, and performance may suffer if many inferences using
+negated formulae are required.
+
+## Implementation
+
+Logic-programming based Action Calculus Reasoning systems can easily
+be implemented on top of Prolog implementations, e.g., by using one of
+the existing Golog implementations.  Specialized systems that are not
+embedded in logic-programming systems also exist, e.g., the Flux
+action programming language and implementation.
+
+Systems based on more general action-calculus reasoning require the
+embedding of a theorem prover into the system.  The Snark prover is
+particularly well suited for these kinds of applications since it is
+specialized for reasoning about large data sets and provides
+mechanisms for defining procedural attachments that solve particular
+reasoning tasks.  Procedural attachments can also be used to implement
+data-base based reasoning about historical facts.
+
+
+## Applications
+
+Action Calculus Reasoning has been used for applications in
+cognitive robotics and swarm robotics.
+
 [[!tag pattern]]

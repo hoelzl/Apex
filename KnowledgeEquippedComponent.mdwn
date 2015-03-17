@@ -93,12 +93,11 @@ updated tuple back into *master*.
 ## Related Patterns
 
 The coordination of interactions for knowledge-equipped components is
-an example of [[TupleSpaceBasedCoordination]]; the interaction between
-components can be performed using [[AttributeBasedCommunication]]. If
-the knowledge of the component is repeatedly or continuously updated
-to correspond to the environment, the knowledge repository and
-processes responsible for updating it form an
-[[AwarenessMechanism]]. An ensemble containing multiple such
-components exhibits [[DistributedAwarenessBasedBehavior]].
+an example of [[TupleSpaceBasedCoordination]]. If the knowledge of the
+component is repeatedly or continuously updated to correspond to the
+environment, the knowledge repository and processes responsible for
+updating it form an [[AwarenessMechanism]]. An ensemble containing
+multiple such components exhibits
+[[DistributedAwarenessBasedBehavior]].
 
 [[!tag pattern]]

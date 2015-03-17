@@ -1,0 +1,55 @@
+# Automated Reasoning
+
+## Classification
+
+[[!taglink reasoning]], [[!taglink awareness]]
+
+## Intent
+
+Allow agents to come up with solutions to situations that could not be
+provided at design time.
+
+## Context
+
+Agents often encounter situations for which no ready-made solution can
+be provided by the designers.  This may simply be because the solution
+depends on data that only becomes available at run time, e.g., the
+start and destination for a route planner.  In more complex ensembles,
+for example rescue operations in complex environment or computer
+assistants operating in complex social settings, agents may encounter
+situations that could not be foreseen at design time.
+
+## Description/Behavior
+
+If the goals of the agent and the situation it encountered can be
+translated into a format that is understood by an automated reasoner,
+the solution to the problem can, in many cases, be derived without
+further input from the designers.
+
+## Consequences
+
+Ideally, a system using Automated Reasoning can react to unforeseen
+situations in a flexiple and appropriate manner without any input from
+operators or supervisors.
+
+## Implementation
+
+Because of the wide variety of Automated Reasoning mechanisms there
+is no universal architecture shared by them all. A typical
+architecture of an Automated Reasoning mechanisms consists of a
+[[KnowledgeRepository]] and one or more application-domain-independent
+reasoning engines, possibly augmented with domain-specific reasoners.
+The results of the reasoning engine when faced with a query is
+typically a plan comprised of a sequence of actions that are supposed
+to reach the desired goal when executed starting with the current
+state of the system.
+
+## Related Patterns
+
+There are many specialized reasoning patterns, e.g.,
+[[ActionCalculusReasoning]].  [[ReinforcementLearning]] can often be
+complement or even replace Automated Reasoning in systems where the
+full specification of the environment cannot be obtained at design
+time.
+
+[[!tag pattern]]
