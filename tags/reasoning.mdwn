@@ -7,4 +7,4 @@ both logical as well as probabilistic inference techniques, and any
 other method that can reasonably considered reasoning.
 
 
-[[!inline pages="tagged(reasoning)" actions="no" archive="yes" feedshow=10]]
+[[!inline pages="tagged(reasoning)" actions="no" archive="yes" feeds="no"]]

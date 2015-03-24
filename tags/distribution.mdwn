@@ -5,5 +5,4 @@
 These patterns are concerned with distribution of work between
 different agents and solving problems incurred by distribution.
 
-[[!inline pages="tagged(distribution)" actions="no" archive="yes"
-feedshow=10]]
+[[!inline pages="tagged(distribution)" actions="no" archive="yes" feeds="no"]]

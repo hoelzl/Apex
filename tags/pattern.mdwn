@@ -1,4 +1,3 @@
 [[!meta title="pages tagged pattern"]]
 
-[[!inline pages="tagged(pattern)" actions="no" archive="yes"
-feedshow=10]]
+[[!inline pages="tagged(pattern)" actions="no" archive="yes" feeds="no"]]

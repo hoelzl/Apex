@@ -1,4 +1,7 @@
-[[!meta title="pages tagged edlc/design"]]
+[[!meta title="Pages tagged edlc/design"]]
 
-[[!inline pages="tagged(edlc/design)" actions="no" archive="yes"
-feedshow=10]]
+# EDLC Design Patterns
+
+Patterns in this category are related to the EDLC Design phase.
+
+[[!inline pages="tagged(edlc/design)" actions="no" archive="yes" feed="no"]]

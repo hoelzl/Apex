@@ -1,5 +1,9 @@
 # Blackboard System
 
+## Classification
+
+[[!taglink awareness]], [[!taglink reasoning]]
+
 ## Intent
 
 Coordinate the interaction between several reasoners.

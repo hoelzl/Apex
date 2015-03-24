@@ -5,5 +5,4 @@
 These patterns are concerned with coordination of different agents in
 distributed systems.
 
-[[!inline pages="tagged(coordination)" actions="no" archive="yes"
-feedshow=10]]
+[[!inline pages="tagged(coordination)" actions="no" archive="yes" feeds="no"]]

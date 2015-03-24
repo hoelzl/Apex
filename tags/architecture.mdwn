@@ -1,4 +1,8 @@
-[[!meta title="pages tagged architecture"]]
+[[!meta title="Pages tagged architecture"]]
 
-[[!inline pages="tagged(architecture)" actions="no" archive="yes"
-feedshow=10]]
+# Architectural patterns
+
+Patterns in this category are concerned with the architecture of a
+system or component.
+
+[[!inline pages="tagged(architecture)" actions="no" archive="yes" feeds="no"]]

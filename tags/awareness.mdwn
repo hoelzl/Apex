@@ -5,4 +5,4 @@
 Patterns in this category are concerned with awareness and awareness
 mechanisms.
 
-[[!inline pages="tagged(awareness)" actions="no" archive="yes" feedshow=10]]
+[[!inline pages="tagged(awareness)" actions="no" archive="yes" feeds="no"]]

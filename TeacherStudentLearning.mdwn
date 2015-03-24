@@ -1,5 +1,11 @@
 # Teacher/Student Learning
 
+## Classification
+
+[[!taglink edlc/design]]
+[[!taglink architecture]], [[!taglink awareness]],
+[[!taglink conceptual]], [[!taglink ensemble]]
+
 ## Specializes
 
 [[CooperationMechanism]]
@@ -10,12 +16,12 @@ Reduce the computational resources needed for adaptation.
 
 ## Motivation
 
-In many systems it is not possible that all agents possess sophisticated
-awareness mechanisms. By equipping only a part of the system's
-components ("teachers") with sophisticated awareness mechanisms and
-allowing awareness-based behaviors to be transmitted to the other
-components ("students"), the resources spent on the awareness mechanism
-may be reduced.
+In many systems it is not possible that all agents possess
+sophisticated awareness mechanisms. By equipping only a part of the
+system's components ("teachers") with sophisticated awareness
+mechanisms and allowing awareness-based behaviors to be transmitted to
+the other components ("students"), the resources spent on the
+awareness mechanism may be reduced.
 
 ## Applicability
 
@@ -29,10 +35,6 @@ or when communication is cheap, a [[SharedAwarenessMechanism]] may
 provide superior performance. When state estimation in the environment
 is difficult, [[PeerToPeerLearning]] may be a more appropriate
 solution.
-
-## Classification
-
-awareness, architecture, edlc-design, ensemble
 
 ## Description
 

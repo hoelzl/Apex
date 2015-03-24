@@ -5,4 +5,4 @@
 These patterns are concerned with the representation of knowledge in
 an ensemble.
 
-[[!inline pages="tagged(knowledge-representation)" actions="no" archive="yes" feedshow=10]]
+[[!inline pages="tagged(knowledge-representation)" actions="no" archive="yes" feeds="no"]]

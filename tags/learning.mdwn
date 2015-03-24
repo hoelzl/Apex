@@ -4,4 +4,4 @@
 
 Patterns in this category address issues related machine learning.
 
-[[!inline pages="tagged(learning)" actions="no" archive="yes" feedshow=10]]
+[[!inline pages="tagged(learning)" actions="no" archive="yes" feeds="no"]]
