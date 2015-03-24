@@ -1,0 +1,4 @@
+[[!meta title="pages tagged architecture"]]
+
+[[!inline pages="tagged(architecture)" actions="no" archive="yes"
+feedshow=10]]
