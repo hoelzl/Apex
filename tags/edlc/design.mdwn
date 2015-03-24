@@ -1,0 +1,4 @@
+[[!meta title="pages tagged edlc/design"]]
+
+[[!inline pages="tagged(edlc/design)" actions="no" archive="yes"
+feedshow=10]]
