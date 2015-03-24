@@ -1,0 +1,4 @@
+[[!meta title="pages tagged distribution"]]
+
+[[!inline pages="tagged(distribution)" actions="no" archive="yes"
+feedshow=10]]
