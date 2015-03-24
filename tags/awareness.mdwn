@@ -1,0 +1,4 @@
+[[!meta title="pages tagged awareness"]]
+
+[[!inline pages="tagged(awareness)" actions="no" archive="yes"
+feedshow=10]]
