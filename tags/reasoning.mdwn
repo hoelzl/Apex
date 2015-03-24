@@ -1,0 +1,4 @@
+[[!meta title="pages tagged reasoning"]]
+
+[[!inline pages="tagged(reasoning)" actions="no" archive="yes"
+feedshow=10]]
