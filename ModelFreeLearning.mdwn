@@ -1,0 +1,50 @@
+# Model-Free Learning
+
+## Classification
+
+[[!taglink reasoning]], [[!taglink awareness]], [[!taglink knowledge-representation]]
+
+## Intent
+
+Learn actions or facts about the environment when no model of the
+environment is available.
+
+## Context
+
+In some situations designers do not know enough about the environment
+of a system to build a useful model or to implement behaviors that
+achieve the system's goals.  In these situations, having the system
+learn a reward function from observed rewards of actions may allow the
+system to autonomously acquire solution strategies at run time.
+
+## Description/Behavior
+
+A system using Model-Free Learning to acquire behavior usually has to
+be able in which state the world currently is and which actions are
+currently possible.  After performing an action the system can
+determine to which state the world has transitioned, and often whether
+the action was beneficial to its goals or not.  In many cases this is
+done by providing a dedicated "reward" signal to the system, but in
+some cases it may be possible to deduce the reward or cost of an
+action from the stat of the world itself.
+
+## Consequences
+
+Model-Free Learning techniques are applicable in many different
+scenarios, since they require very little information about their
+environment.  However, to achieve good learning rates it is important
+to reduce the size of the state space on which the learner operates.
+
+## Implementation
+
+## Variants
+
+## Related Patterns
+
+Traditionally, most [[ReinforcementLearning]] techniques were
+model-free, but recently, model-based [[ReinforcementLearning]] has
+also gained popularity.
+
+## Applications
+
+[[!tag pattern]]

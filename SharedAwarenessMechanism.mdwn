@@ -4,4 +4,37 @@
 
 [[AwarenessMechanism]]
 
+## Classification
+
+[[!taglink pattern/awareness]], [[!taglink pattern/conceptual]]
+
+## Intent
+
+Provide an [[AwarenessMechanism]] that is partially shared between
+multiple members of an ensemble.
+
+## Context
+
+An [[AwarenessMechanism]] is an important element of many Service
+Components (SCs) in an ensemble.  However, deep and broad awareness
+requires significant resources for sensing, storing and processing
+data.  If multiple SCs perform similar computations it may be more
+efficient to share parts of the awareness mechanism.
+
+## Diagram/Structure
+
+## Description/Behavior
+
+## Formal Behavior
+
+## Consequences
+
+## Implementation
+
+## Variants
+
+## Related Patterns
+
+## Applications
+
 [[!tag pattern]]

@@ -1,4 +1,9 @@
-[[!meta title="pages tagged distribution"]]
+[[!meta title="Pages tagged distribution"]]
+
+# Distribution Patterns
+
+These patterns are concerned with distribution of work between
+different agents and solving problems incurred by distribution.
 
 [[!inline pages="tagged(distribution)" actions="no" archive="yes"
 feedshow=10]]

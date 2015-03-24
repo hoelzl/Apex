@@ -1,0 +1,10 @@
+[[!meta title="Pages tagged conceptual"]]
+
+# Conceptual Patterns
+
+Patterns in this category represent concepts that may prove useful
+during system design.
+
+
+[[!inline pages="tagged(conceptual)" actions="no" archive="yes"
+feedshow=10]]

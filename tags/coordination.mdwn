@@ -1,4 +1,9 @@
-[[!meta title="pages tagged coordination"]]
+[[!meta title="Pages tagged coordination"]]
+
+# Coordination Patterns
+
+These patterns are concerned with coordination of different agents in
+distributed systems.
 
 [[!inline pages="tagged(coordination)" actions="no" archive="yes"
 feedshow=10]]

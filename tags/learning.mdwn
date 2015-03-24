@@ -1,0 +1,7 @@
+[[!meta title="Pages tagged learning"]]
+
+# Learning Patterns
+
+Patterns in this category address issues related machine learning.
+
+[[!inline pages="tagged(learning)" actions="no" archive="yes" feedshow=10]]

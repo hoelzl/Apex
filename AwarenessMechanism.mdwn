@@ -1,5 +1,9 @@
 # Awareness Mechanism
 
+## Classification
+
+[[!taglink pattern/awareness]], [[!taglink pattern/conceptual]]
+
 ## Intent
 
 An awareness mechanism is a model of an ensemble's environment (and
@@ -21,17 +25,13 @@ awareness model is often a [[MultiModel]] and a [[DeepModel]], in
 particular it often combines [[LogicalModel]]s and
 [[ProbabilisticModel]]s.
 
-## Classification
-
-[[!taglink pattern/awareness]], [[!taglink pattern/conceptual]]
-
 ## Description
 
 We introduce the elements that an awareness mechanism has to possess,
 and the characteristics according to which awareness mechanism can be
 classified.
 
-## Elements of the awareness mechanism
+### Elements of the awareness mechanism
 
 It is difficult to conceive of a completely memory-less (self-)aware
 system; therefore a system \(S\) that exhibits awareness has to have
@@ -392,7 +392,8 @@ how to navigate in an unknown environment.
 
 ## Related Patterns
 
-[[KnowledgeEquippedComponent]], [[DistributedAwarenessBasedBehavior]]
+[[KnowledgeEquippedComponent]], [[DistributedAwarenessBasedBehavior]],
+[[SharedAwarenessMechanism]]
 
 <div id="bibliography">
 <h2>References</h2>

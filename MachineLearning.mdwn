@@ -1,16 +1,15 @@
-# Reinforcement Learning
-
-## Specializes
-
-[[ModelFreeLearning]]
+# Machine Learning
 
 ## Classification
 
-[[!taglink reasoning]], [[!taglink awareness]], [[!taglink knowledge-representation]]
+[[!taglink awareness]],[[!taglink conceptual]],
+[[!taglink learning]], [[!taglink reasoning]]
+
+## Aliases
 
 ## Intent
 
-Learn "good" behaviors from a single numeric reward signal.
+## Summary
 
 ## Context
 

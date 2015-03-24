@@ -1,3 +1,78 @@
 # Illusion of Stability
 
+## Classification
+
+[[!taglink pattern/awareness]]
+
+## Context
+
+Provide the illusion of operating in a stable environment to
+subsystems even though this may in reality not be the case.
+
+## Motivation
+
+Often some aspects of a system's environment fluctuate randomly, and
+the sensors used to measure the environment add even more noise.
+These rapid changes can make it more difficult to reason about
+properties.  In addition, if values fluctuate more quickly than the
+system's ability to compensate for changes (which is typically the
+case for noise from measurements), most compensation actions will
+degrade the performance of the system instead of increasing it.  By
+providing an abstraction over the low-level measurements that provides
+an Illusion of Stability, other parts of the system may become simpler
+and the overall system performance may be increased signinficantly.
+
+## Applicability
+
+Whenever noisy or randomly fluctuating data exists in a system.
+
+## Description/Behavior
+
+To provide an Illusion of Stability the raw data is processed in a way
+that provides a more stable or consistent view of the data, and the
+rest of the system is provided with this processed data.  For
+subsystems that perform [[AutomatedReasoning]] or other offline tasks
+with long duration their input data may additionally be temporally
+quantized so that the data provided to these subsystems remains
+constant for the duration of the reasoning process.  This can avoid
+inconsistencies in the reasoning process that arise from sampling the
+same data at different points in time and obtaining different values.
+
+## Consequences
+
+If the mechanism used to provide the Illusion of stability is adequate
+for the problem, the view that other subsystems have on the relevant
+data can be significantly simplified and the accuracy of reasoning or
+learning processes enhanced.  However, care has to be taken that
+smoothing or otherwise processing data to remove noise does not
+actually remove the important signal from the data.  If this happens,
+the reliability and performance of the system may be greatly
+compromised.
+
+## Implementation
+
+Many variants of this patterns are used in practice.  To process noisy
+sensor signals, techniques such as Kahlman filters (or more generally,
+Bayesian filters) are commonly used.  [[ReinforcementLearning]]
+techniques often rely on parametric approximations of their fitness
+function instead of computing an exact representation.  While this is
+mainly done to reduce the dimensionality of the learning space, a
+secondary effect is that it provides an Illusion of Stability to the
+rest of the system since the approximated function can generally only
+approximate smooth functions.
+
+## Related Patterns
+
+In many cases the [[AwarenessMechanism]] of a system is also
+responsible for providing an Illusion of Stability about the system's
+inputs.
+
+## Applications
+
+As mentioned in the Implementation section, applications of filters to
+smooth sensor data is an example of this pattern.  Inputs to
+machine-learning algorithms are sometimes manually preprocessed to
+"clean" the data, e.g., by removing obvious errors or outliers from
+the input data; this is another application of this pattern.
+
 [[!tag pattern]]

@@ -1,4 +1,8 @@
-[[!meta title="pages tagged knowledge-representation"]]
+[[!meta title="Pages tagged knowledge-representation"]]
 
-[[!inline pages="tagged(knowledge-representation)" actions="no" archive="yes"
-feedshow=10]]
+# Knowledge Representation Patterns
+
+These patterns are concerned with the representation of knowledge in
+an ensemble.
+
+[[!inline pages="tagged(knowledge-representation)" actions="no" archive="yes" feedshow=10]]

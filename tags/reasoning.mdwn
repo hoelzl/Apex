@@ -1,4 +1,10 @@
-[[!meta title="pages tagged reasoning"]]
+[[!meta title="Pages tagged reasoning"]]
 
-[[!inline pages="tagged(reasoning)" actions="no" archive="yes"
-feedshow=10]]
+# Reasoning Patterns
+
+Patterns in this category are concerned with reasoning. This includes
+both logical as well as probabilistic inference techniques, and any
+other method that can reasonably considered reasoning.
+
+
+[[!inline pages="tagged(reasoning)" actions="no" archive="yes" feedshow=10]]

@@ -47,9 +47,9 @@ state of the system.
 ## Related Patterns
 
 There are many specialized reasoning patterns, e.g.,
-[[ActionCalculusReasoning]].  [[ReinforcementLearning]] can often be
-complement or even replace Automated Reasoning in systems where the
-full specification of the environment cannot be obtained at design
-time.
+[[ActionCalculusReasoning]] or [[AlgorithmicPlanning]].
+[[ReinforcementLearning]] can often be complement or even replace
+Automated Reasoning in systems where the full specification of the
+environment cannot be obtained at design time.
 
 [[!tag pattern]]
