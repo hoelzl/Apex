@@ -1,0 +1,81 @@
+# Autonomic Service Component
+
+## Classification
+[[!taglink adaptation]],
+[[!taglink component]],
+[[!taglink ascens/adaptation]],
+[[!taglink edlc/adaptation]]
+
+## Intent
+
+The component alone is not able to self-adapt (or if the component is
+a proactive one its adaptation here is not enough). Adaptation is
+possible by adding an external AM that manages the component. The
+overall composite is made of a controlled SC and a part that
+represents the autonomic control manager (AM). The services of the
+controlled part and its goals and utilities (if any), are tightly
+coupled with the AM that is devoted to adapt its behaviour to enforce
+additional utilities.
+
+## Context
+
+This patterns has to be adopted when:
+
+ -  there are components that need to be deployed in an environment
+    where additional/different requirements necessitate the component
+    to handle different sets of utilities and goals;
+
+ -  there is the necessity to share knowledge or something else (e.g.
+    code, hardware, etc.), that is better managed from an external
+    controller;
+
+ -  adaptation is not fully reached without an external AM.
+
+## Structure
+
+![Structure of Autonomic Service Component](../Images/AutonomicServiceComponent.png)
+
+## Behavior
+
+This pattern is designed around an explicit autonomic feedback loop.
+Using "sensors" the SC and the AM can perceive the different events in
+the environment and the changes in the environment itself. The AM
+perceives not only the environment, but also the service request made
+at the component and its logic. Having its internal goals and
+utilities, the AM manages the adaptation inside the component, maybe
+changing the logic of choosing actions in response to a service
+request.
+
+## SOTA Description
+
+-   Goals: $G = G_{SC} \cup G_{AM}$
+
+-   Utilities: $U = U_{SC} \cup U_{AM}$
+
+
+## Consequences
+
+The component can be a simple one because all the management of the
+adaptation of its response to a service request is delegated to the
+AM. The AM can eventually share knowledge with the external, and be
+aware of more information about the external, than the component.
+
+
+## Related Patterns
+
+[[MultilevelAMsServiceComponent]],
+[[HierarchyOfParallelAMsServiceComponent]]
+
+## Applications
+
+An example of the use of this pattern is the Travel Companion case
+study presented in [QPEM10]. A travel companion helps its users by
+monitoring their travel itineraries. These itineraries are generated
+by accessing available services (e.g. airlines). It is based on
+available services and it provides an interface to the user to browse
+and search available travel and allied services to prepare her
+travels. It also allows for plan modification, either form user
+requests, or initiated by the Travel Companion on behalf of the user,
+based on her current context and preferences, using an external AM.
+
+[[!tag pattern]]

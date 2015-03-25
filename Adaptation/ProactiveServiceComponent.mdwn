@@ -1,0 +1,91 @@
+# Proactive Service Component
+
+## Classification
+[[!taglink adaptation]],
+[[!taglink component]],
+[[!taglink ascens/adaptation]],
+[[!taglink edlc/adaptation]]
+
+## Intent
+
+The component has an internal goal to satisfy while responding to services’ requests. The SC has to be able to adapt both to external changes and to internal change (due to the goal satisfaction).
+
+## Context
+
+This patterns has to be adopted when:
+
+ –  there are components that are goal-oriented in nature;
+
+ –  there are components that, despite being simply service-oriented in nature, 
+    they actively try to adapt their behaviour, even without waiting for external
+    call (or stimuli).
+
+## Structure
+
+![Structure of Proactive Service Component](../Images/ProactiveServiceComponent.png)
+
+## Description/Behavior
+
+Using "sensors" the SC can perceive the different events in the
+environment and the changes in the environment itself. It has an
+internal goal and an internal feedback loop created by the internal
+logic of the component and its goal. This feedback loop manages the
+component's behaviour (as if there is an implicit AM). The adaptation
+can start from environmental changes, but also from the internal state
+of the component that decides to adapt its behaviour in order to
+satisfy its goal. Therefore the adaptation, starting from the
+components' goals, takes place in the internal state of the component,
+as an "internal feedback loop."
+
+## SOTA Description
+
+-   Goals: $G = \{G_1, \dots, G_n\}$
+
+	There is/are a/some specific goal/s inside the component.
+	
+-   Utilities: $U = \{U_1,U_2, \dots, U_n\}$
+
+
+## Consequences
+
+The internal state of the component can change without changing its
+interfaces with the external world (i.e. environment and other
+components).
+
+## Related Patterns
+
+[[ReactiveStigmergy]], [[ServiceComponentEnsemble]]
+
+## Applications
+
+
+ -  This pattern is used in the "Hap architecture" presented in [LB91].
+    The Hap architecture is an agent architecture for adaptive
+	systems. Here the environment (called ”world”) is connected to the
+    agent (component) thought perception/action channels. The agent
+	has to pursuit a goal/plan. The active goals and plans for an Hap
+	agent are recorded in the active plan tree internal to the agent;
+	all the plans known to the agent are stored in a plan memory, and
+	a feedback loop is presented between them. Hap supports two types
+	of reactivity: realising when the changes in the world make the
+	pursuit of an active plan nonsensical.
+
+ - Another case study that uses this pattern is presented in [WMA10].
+	Here the problem of improving QoS can be developed using a
+	proactive component that is a self-adaptive unit. After a
+	monitoring of the parameters, a model maintains the representation
+	of the system’s deployment architecture, then an algorithm that
+	specify an optimisation problem or constraints satisfaction
+	problem is used by an analyser internal to the component, to
+	determinate the actions that the effectors have to act.
+
+ -  Another case study is the electronic marketplace presented in
+    [AHDJ01]. The simulation of electronic marketplace consists in a
+	number of auctions that run concurrently. The component (i.e.
+	agent) that will participate at an auction, has its internal goals
+	(to win the auction), and some utilities (e.g. not to spend much
+	than a prefixed threshold). So the agent self-adapts its behaviour
+	in order to chose which auction to participate at, and in order to
+	try to win the auction.
+
+[[!tag pattern]]

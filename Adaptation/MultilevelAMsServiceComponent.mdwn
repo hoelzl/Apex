@@ -1,0 +1,46 @@
+# Multilevel AMs Service Component
+
+## Classification
+
+[[!taglink adaptation]],
+[[!taglink component]],
+[[!taglink ascens/adaptation]],
+[[!taglink edlc/adaptation]]
+
+## Intent
+
+The simple component is not able to self-adapt (or if the component is a proactive one its adaptation here is not enough). Thus adaptation in charge of an external AM. Here a single AM is not enough because each AM is in charge to manage higher level of information. The overall composite is made of a controlled SC and a part that manages the adaptation of the component. This latter part is composed by more that one AM: each of them is in charge of an higher level adaptation (hierarchy of adaptation).
+
+## Context
+
+This patterns has to be adopted when:
+
+ -  there are components that need to be deployed in an environment
+    where additional/different requirements necessitate the component
+	to handle different sets of utilities and goals;
+
+ -  there is the necessity to share knowledge or something else (e.g.
+    code, hardware, etc.), that is better managed from an external
+	controller;
+
+ -  the problem can be tackled at different levels, so each AM is in
+    charge of facing the same problem but at a different level, with
+    higher level information.
+
+## Structure
+
+## Behavior
+
+## SOTA
+
+## Consequences
+
+## Implementation
+
+## Variants
+
+## Related Patterns
+
+## Applications
+
+[[!tag pattern]]

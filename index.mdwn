@@ -11,4 +11,4 @@ Good starting points to explore the pattern catalog are
 
 The following graphs shows the interdependencies between patterns.
 
-[[!linkmap pages="tagged(pattern)" width=8 height=25]]
+[[!linkmap pages="tagged(pattern)" width=10 height=25]]

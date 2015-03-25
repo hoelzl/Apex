@@ -6,19 +6,42 @@
 
 ## Classification
 
-## Aliases
+[[!taglink reasoning]], [[!taglink awareness]],
+[[!taglink edlc/design]], [[!taglink edlc/awareness]],
+[[!taglink edlc/adaptation]]
 
 ## Intent
 
-## Summary
-
-## Context
+Exploit hierarchical and temporal knowledge about a problem's solution
+to reduce the state space for reasoning and learning.
 
 ## Motivation
 
+Most approaches to reasoning and learning suffer from the problem of
+*explosivity:* The space or time complexity grows polynomially or
+exponentially in the number of states, making solutions for moderately
+large state spaces impossible.  By structuring the problem in a
+hierarchical manner it often becomes possible to avoid this
+exponential growth.  For example, if a search space with 1000 nodes
+can be searched with time complexity $O(n^3)$, the evaluation will
+take $\sim 1,000,000,000$ units of time.  If the space can be
+structured into a choice between 10 state spaces with 100 states each,
+even this one level of hierarchy reduces the search to $\sim 1001000$
+units or $0.1\%$ of the original search time.
+
 ## Applicability
 
+This pattern is applicable whenever a hierarchical structure of the
+problem can be identified and at least one of the desired solutions is
+expressible in terms of the hierarchy.  Furthermore, either the
+reasoner or learners used to solve the reasoning or learning problem
+have to directly support hierarchical reasoning/learning, or the
+decomposition of the problem and recombination of the solutions have
+to be possible.
+
 ## Diagram/Structure
+
+![Hierarchical Decomposition](../Images/hierarchical-decomposition.svg)
 
 ## Description/Behavior
 

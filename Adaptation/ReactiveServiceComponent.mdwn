@@ -28,20 +28,51 @@ This patterns has to be adopted when:
 
 ## Structure
 
-![Reactive Service Component Structure](Images/ReactiveServiceComponent.png)
+![Reactive Service Component Structure](../Images/ReactiveServiceComponent.png)
 
-## Description/Behavior
+## Behavior
 
-## Formal Behavior
+Using "sensors" the SC can perceive the different events in the
+environment and the changes that occur in it. In order to continue to
+satisfy its internal utilities, when a service request is made to the
+component, it responds adapting its behaviour in reaction to the
+environmental changes. This reaction can be propagated to the
+environment using "effectors."
+
+## SOTA Description
+
+### Goals
+
+$$G=\emptyset$$
+
+A specific goal is not explicit inside the component
+  
+### Utilities 
+
+$$U = \{U_1, U_2,\dots, U_n\}$$
 
 ## Consequences
 
-## Implementation
-
-## Variants
+The response of the component to a service request is very quick
+because its adaptation is in term of changing its behaviour, without
+changing its internal state. In this pattern there is not a specific
+feedback loop, but the reflection ability of the components acts as a
+feedback loop.
 
 ## Related Patterns
 
+[[AutonomicServiceComponent]]
+
 ## Applications
+
+An example of this pattern is described in [Woo02] that define a
+thermostat as a reactive component. Thermostats have a sensor for
+detecting room temperature. This sensor is directly embedded within
+the environment (i.e., the room), and it produces as output one of two
+signals: one that indicates that the temperature is too low, another
+which indicates that the temperature is OK. The simple decision making
+component (reaction of the com- ponent) of the thermostat implements
+the following rules: when it is too cold, than turn the heating on,
+when the temperature is ok, then turn the heating off.
 
 [[!tag pattern]]

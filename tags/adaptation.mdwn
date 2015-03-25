@@ -1,4 +1,3 @@
-[[!meta title="pages tagged adaptation"]]
+[[!meta title="Pages tagged adaptation"]]
 
-[[!inline pages="tagged(adaptation)" actions="no" archive="yes"
-feedshow=10]]
+[[!inline pages="tagged(adaptation)" actions="no" archive="yes" feed="no"]]

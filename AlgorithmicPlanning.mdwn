@@ -48,9 +48,9 @@ To employ Algorithmic Planning, the desired behavior of a system are
 specified either as goals the system should reach or as (complex)
 actions the system should perform.  If the immediate goals or plans
 are too difficult to reach or execute directly, a goal decomposition
-or action decomposition can be performed using
-[[AlgorithmicPlanning]].  The computed sequence of actions is then
-executed by an execution engine.
+or action decomposition can be performed using Algorithmic Planning.
+The computed sequence of actions is then executed by an execution
+engine.
 
 ## Consequences
 
