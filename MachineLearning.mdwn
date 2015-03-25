@@ -18,15 +18,52 @@ usefully employed to support this.
 
 ## Description/Behavior
 
+Machine learning techniques can roughly be classified into three
+areas: supervised learning, unsupervised learning and
+[[ReinforcementLearning]].
 
+The supervised learning problem consists in generalizing from
+experience: We have certain objects that we want to classify, e.g., by
+assigning labels like "red bicycle" or "woman surfing in the sunset"
+to images.  Furthermore we have a number of objects that are already
+correctly labeled, the so-called training set.  In our example the
+training set might be a number of pictures that have been manually
+labeled.  A supervised learner would be passed the training images to
+analyze and then be given the task of classifying unknown images,
+i.e., classifying objects that don't appear in the training set.
+Supervised learning techniques are useful for tasks such as image
+recognition, speech recognition, or to provide function approximations
+for other learning techniques.
+
+Unsupervised learners are provided with a data set that provides no
+labeled instances.  Their task is commonly to cluster the elements of
+this data set according to their similarity.  These techniques can,
+for example, be used to reduce the dimensionality of inputs to other
+search, learning or reasoning problems.
+
+An important class of learning problem for ensembles are
+[[ReinforcementLearning]] tasks.  In this case the learner has to
+learn a good *policy* for interacting with an environment, i.e., an
+action for every state of the environment.  The feedback provided by
+the environment consists of a state and a reward after each action.
+
+![Structure of a Reinforcement Learner](../Images/reinforcement.svg)
 
 ## Consequences
 
-## Implementation
-
-## Variants
+Machine learning techniques are proving increasingly useful in a wide
+variety of applications and are deployed in areas such as search
+engines, voice recognition or behavior recognition.  However they are
+typically computationally intensive and require large amounts of
+training data, therefore they are not well suited to problems in which
+training data is difficult to obtain.  Furthermore, most
+machine-learning techniques are difficult to apply without significant
+experience with the relevant methods.
 
 ## Related Patterns
+
+[[ReinforcementLearning]], [[AutomatedReasoning]],
+[[AlgorithmicPlanning]]
 
 ## Applications
 

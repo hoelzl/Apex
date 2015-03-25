@@ -1,5 +1,1 @@
-# Pattern Categories
-
-Test
-Test
-Test
+[[!map pages="*"]]
