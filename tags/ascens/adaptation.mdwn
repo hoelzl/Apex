@@ -1,0 +1,4 @@
+[[!meta title="pages tagged ascens/adaptation"]]
+
+[[!inline pages="tagged(ascens/adaptation)" actions="no" archive="yes"
+feedshow=10]]
