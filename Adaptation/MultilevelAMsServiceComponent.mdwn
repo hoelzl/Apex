@@ -29,18 +29,33 @@ This patterns has to be adopted when:
 
 ## Structure
 
+![Structure of the pattern](../Images/MultilevelAMsServiceComponent.png)
+
 ## Behavior
 
-## SOTA
+This pattern is designed around multiple explicit autonomic feedback
+loops. The SC is managed by a hierarchy of AMs. Each AM perceives
+information by the lower level (another AM or the component) and,
+basing on these, it manages adaptation of all the lower levels in a
+hierarchical way.
+
+## SOTA Description
+
+-   Goals: $G = \{G_{SC} \cup G_{AM1} \cup G_{AM2} \cup \dots \cup G_{AMn}\}$
+-   Utilities: $U = \{U_{SC} \cup 
+	  U_{AM1} \cup U_{AM2} \cup \dots \cup U_{AMn} \}$
 
 ## Consequences
 
-## Implementation
-
-## Variants
+The component can be a simple one because all the management of the
+adaptation of its response to a service request is delegated to the
+AMs. Adaptation is divided at different levels, based on the managed
+information and on the capabilities of the AMs. Each added AM acts as
+a Super AM (SAM) managing the system composed of the previous AMs and
+the SC.
 
 ## Related Patterns
 
-## Applications
+[[AutonomicServiceComponent]]
 
 [[!tag pattern]]

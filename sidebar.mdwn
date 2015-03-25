@@ -1,1 +1,1 @@
-[[!map pages="*"]]
+[[!map pages="tagged(pattern)"]]
