@@ -1,0 +1,47 @@
+# Name Reactive Service Component
+
+## Classification
+
+[[!taglink adaptation]],
+[[!taglink component]],
+[[!taglink ascens/adaptation]],
+[[!taglink edlc/adaptation]]
+
+## Intent
+
+A simple SC that has not a complex structure and knowledge, has to rapidly provide services, adapting its behaviour to the change in the environment. The SC is not able to perceive a goal, but it is able to perceive environmental changes.
+
+## Summary
+
+## Context
+
+This patterns has to be adopted when:
+
+- the component needs to ensure specific non-functional requirements
+  in the provisioning of its services but the goals are expressed at a
+  higher-level of the overall system, and cannot be mapped into
+  individual goals;
+  
+– external events are frequent and need a rapid adaptation;
+
+– services are frequently requested.
+
+## Structure
+
+![Reactive Service Component Structure](Images/ReactiveServiceComponent.png)
+
+## Description/Behavior
+
+## Formal Behavior
+
+## Consequences
+
+## Implementation
+
+## Variants
+
+## Related Patterns
+
+## Applications
+
+[[!tag pattern]]

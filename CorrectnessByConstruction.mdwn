@@ -6,27 +6,49 @@
 
 ## Classification
 
-[[!taglink validation]], [[!taglink edlc/validation]]
+[[!taglink ensemble]], [[!taglink validation]], [[!taglink edlc/validation]]
+
 
 ## Aliases
 
+Correct by Construction
+
 ## Intent
 
-## Summary
+Build systems in such a way, that the construction process is
+guaranteed to be correct, and include a proof of the correctness in
+the program itself.
 
 ## Context
 
-## Motivation
+For many systems high reliability and freedom from errors is
+important.  Many [[VerificationAndValidation]] techniques can be used
+at design time to improve the confidence that the system will perform
+as expected, and runtime mechanisms to monitor the system's
+performance and take measures at run time if problems are detected.
+However, verification and validation techniques are often
+time-consuming and require a lot of manual input.
 
-## Applicability
-
-## Diagram/Structure
+In some instances it is possible to build the system in such a manner
+that the construction process itself guarantees the correctness of the
+system.  For example, when declaratively assembling a service from
+simpler services using logical reasoning, the correctness of the
+resulting service is ensured by the construction process itself and
+relies only on the correctness of the specifications of the
+sub-servics.
 
 ## Description/Behavior
 
-## Formal Behavior
+Correctness by Construction relies on the use of static verification
+techniques throughout all stages of the development process.  Often,
+programming languages with strong type systems (e.g., dependently
+typed languages) that express the specification of many properties as
+types are proposed as foundation of the implementation.
 
 ## Consequences
+
+In theory the resulting program is guaranteed to be correct with
+regards to its specification.  In practice, 
 
 ## Implementation
 

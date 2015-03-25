@@ -1,0 +1,51 @@
+# Cooperation Mechanism
+
+## Classification
+
+[[!taglink cooperation]], [[!taglink ensemble]], [[!taglink edlc/design]]
+
+## Aliases
+
+Coordination Mechanism
+
+## Intent
+
+Provide a mechanism that allows members of an ensemble to cooperate.
+
+## Context
+
+In a distributed setting, it is often necessary to provide mechanisms that allow agents to cooperate effectively.
+
+## Motivation
+
+Often, agents in ensembles rely on cooperation with other agents to reach their goals.  This can only be achieved if the ensemble provides mechanisms that enable cooperation to take place while taking into account the constraints under which the agents operate.  For example, agents that partially compete and partially cooperate (as is the case in most ensemble) may want to plan cooperations without exposing certain details of their internal structure to each other.  
+
+## Applicability
+
+Coordination mechanisms are a very general concept and applicable to any kind of distributed system.  Traditional systems often rely on simple coordination primitives such as semaphores or mutexes as Cooperation Mechanisms; for ensembles and other agent-based systems, a large number of more powerful Coordination Mechanisms have been developed, i.e., [[Auction]]s, [[TupleSpaceBasedCoordination]] or [[TeacherStudentLearning]].
+
+## Description/Behavior
+
+A Cooperation Mechanism has to provide at least one of the following features
+
+- Synchronization of execution steps between different members of an ensemble
+
+- Exchange of data between different components.
+
+Some simple Cooperation mechanisms provide only synchronization, but Cooperation Mechanisms used in ensembles often provide both of these features.  
+
+## Consequences
+
+In general, Cooperation Mechanisms enable the synchronization of individual components in a system, and they allow the exchange of data between components.  Therefore they are essential for many kinds of systems.  However, overuse of locking may have negative influences on system performance, and may introduce bugs such as deadlocks.  [[VerificationAndValidation]] techniques may be usefully applied to eliminate many of these errors at design time.  Exchanging more data than necessary may lead to high consumption of network resources and storage on the nodes.  For some systems it may also introduce security or confidentiality concerns.
+
+See individual Cooperation Mechanisms, such as [[Auction]], [[TeacherStudentLearning]], [[TupleSpaceBasedCoordination]] for the consequences of using each respective mechanism.
+
+## Related Patterns
+
+[[Auction]], [[TeacherStudentLearning]], [[TupleSpaceBasedCoordination]]
+
+## Applications
+
+See any distributed system.
+
+[[!tag pattern]]

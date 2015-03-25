@@ -1,5 +1,10 @@
 # Knowledge Equipped Component
 
+## Classification
+
+[[!taglink architecture]], [[!taglink component]], 
+[[!taglink edlc/design]], [[!taglink edlc/modeling]]
+
 ## Intent
 
 Enable an autonomous component to operate in a context-sensitive manner
@@ -28,9 +33,6 @@ components must be equipped with a communication mechanism that enables
 sender and receiver to establish their identities and sufficient
 bandwidth must be available.
 
-## Classification
-
-architecture, component, edlc-design, edlc-modeling
 
 ## Description
 

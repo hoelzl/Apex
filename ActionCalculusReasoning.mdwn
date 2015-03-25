@@ -80,6 +80,110 @@ mechanisms for defining procedural attachments that solve particular
 reasoning tasks.  Procedural attachments can also be used to implement
 data-base based reasoning about historical facts.
 
+The following is a simple formalization of a robot movement problem in
+an action calculus (a variant of the classical situation calculus) for
+the Snark theorem prover.
+
+The specification makes use of the fact that Snark supports sorted
+logic.  This improves performance since it greatly reduces the search
+space for inferences, and it helps avoid errors.
+
+    (declare-sort 'situation)
+    (declare-sort 'action)
+    (declare-sort 'object)
+    (declare-sort 'direction)
+	
+By default sorts in Snark are not incompatible, so we have to inform
+the systems that they may not overlap.	
+	
+    (declare-sorts-incompatible 'situation 'action 'object 'direction)
+	
+Robots are a subsort of `object`.  In this simple example the
+introduction of a subtype relationship would not really be necessary,
+but it may simplify more complex example, since it helps avoid
+introducing many implications that are otherwise required to translate
+type correctness into pure logic.
+	
+    (declare-subsort 'robot 'object)
+
+Situations are, roughly speaking, sequences of actions that were
+performed.  The basic operation to extend situations with new actions,
+and thus "progress time" in the situation calculus is `do` which takes
+an action and a situation as arguments, and returns a new situation.
+	
+    (declare-function 'do 2 :sort '(situation action situation) :injective t)
+
+
+We introduce constants for the four directions that describe the
+possible movements of the robots.  Since Snark does not presume that
+different constants represents distinct objects, we have to specify
+axioms that assert that this is the case.
+
+    (declare-constant 'north :sort 'direction)
+    (declare-constant 'east :sort 'direction)
+    (declare-constant 'south :sort 'direction)
+    (declare-constant 'west :sort 'direction)
+    (assert '(not (= north east)))
+    (assert '(not (= north south)))
+    (assert '(not (= north west)))
+    (assert '(not (= east west)))
+    (assert '(not (= east south)))
+    (assert '(not (= south west)))
+
+
+`move-robot` is a constructor for actions: given a robot and a
+direction, `move-robot` returns an action that describes moving the
+robot in the specified direction.  This action can then be used as
+argument to `do` to create new situations.
+
+    (declare-function 'move-robot 2
+                      :sort '(action robot direction)
+                      :injective t)
+
+ The `robot-position-x` function describes the *x* coordinate of the
+ robot in a given situation.  A similar function can be used to
+ describe the *y* coordinate.
+ 
+    (declare-function 'robot-position-x 2
+                      :sort '(integer robot situation)
+                      :injective t)
+
+The followin axiom expresses the "dynamics" of the model, i.e., the
+relationship between the actions performed and the position of the
+robot.  Again, a similar axiom can be used to describe movement in the
+*y* position.
+
+    (assert
+     '(forall ((r :sort robot)
+               (a :sort action)
+               (s :sort situation)
+               (p :sort integer))
+       (iff (= (robot-position-x r (do a s)) p)
+            (or (and (= a (move-robot r east))
+			         (= (robot-position-x r s) ($$sum 1 p)))
+                (and (= a (move-robot r west))
+				     (= (robot-position-x r s) ($$sum -1 p)))
+                (and (not (= a (move-robot r east)))
+				     (not (= a (move-robot r west)))
+                (= (robot-position-x r s) p)))))
+       :supported nil
+       :sequential t)
+
+Given this specification, questions such as 
+
+(prove '(forall ((r :sort robot)
+                     (s1 :sort situation))
+               (exists ((p :sort integer)
+                        (a :sort action :global t))
+                  (and (= (robot-position-x r (do a s1)) p)
+                       (implies
+                         (= (robot-position-x r (do a s1)) p)
+                         (= (robot-position-x r s1) ($$difference p 1))))))
+            :answer '(ans a))
+
+which can be translated as "Is there an action that changes the *x*
+coordinate of the robot?"  With appropriate settings for its inference
+engine, Snark will compute the two solutions, `west` and `east`.
 
 ## Applications
 

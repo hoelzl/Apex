@@ -2,7 +2,13 @@
 
 ## Specializes
 
-DynamicCodeUpdate
+[[DynamicCodeUpdate]]
+
+## Classification
+
+[[!taglink implementation]], [[!taglink knowledge]],
+[[!taglink edlc/awareness]], [[!taglink edlc/deployment]],
+[[!taglink edlc/runtime]]
 
 ## Intent
 
@@ -13,19 +19,15 @@ sources.
 
 It is sometimes necessary or desirable to change the behavior of
 knowledge sources in a blackboard system, e.g., when the domain model
-has been improved. For purely declarative knowledge sources this can be
-done without code update by simply modifying the axioms of the reasoner
-on the blackboard. For special-purpose reasoners it may be necessary to
-perform a DynamicCodeUpdate for the reasoner.
+has been improved. For purely declarative knowledge sources this can
+be done without code update by simply modifying the axioms of the
+reasoner on the blackboard. For special-purpose reasoners it may be
+necessary to perform a [[DynamicCodeUpdate]] for the reasoner.
 
 ## Applicability
 
 The system must use a blackboard architecture and allow
-DynamicCodeUpdates.
-
-## Classification
-
-edlc-awareness, edlc-deployment, edlc-runtime, implementation
+[[DynamicCodeUpdate]]s.
 
 ## Description
 

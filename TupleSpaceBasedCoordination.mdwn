@@ -1,8 +1,13 @@
 # Tuple-Space-Based Coordination
 
+## Specializes
+
+[[CooperationMechanism]]
+
 ## Classification
 
-[[!taglink coordination]], [[!taglink distribution]]
+[[!taglink coordination]], [[!taglink distribution]],
+[[!taglink edlc/design]]
 
 ## Context
 

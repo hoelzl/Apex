@@ -1,7 +1,5 @@
 # Awareness-Based Behavior
 
-## Specializes
-
 ## Classification
 
 [[!taglink ensemble]], [[!taglink edlc/design]], [[!taglink edlc/awareness]]
@@ -28,7 +26,11 @@ An *awareness mechanism* consists of an *awareness model* which is inversely con
 
 ## Consequences
 
+Awareness-Based Behaviors allow systems to operate in a wide range of environments and to dynamically update their goals at runtime.  It relies on systems having sufficient sensors and computing resources to maintain the necessary level of awareness, therefore use of this pattern may increase the cost, size and energy consumption of a system.
+
 ## Implementation
+
+Instances of this pattern can be sen in all ASCENS case studies.  For exampl, the ASCENS autonomic cloud case study presents an example for an awareness-based system in the context of a cloud environment.  The ASCENS Academia example shows the application of this pattern using [[DistributedAwarenessBasedBehavior]] via [[TeacherStudentLearning]] in the context of swarm robotics.
 
 ## Variants
 

@@ -421,13 +421,12 @@ the HTN planner for solutions to these problems.
         result))
 
 
-## Variants
-
 ## Related Patterns
 
-## Applications
-
-[[!tag pattern]]
-
+Algorithmic planning is a form of [[AutomatedReasoning]].  In
+situations where no model of the environment is known or where the the
+environment is likely to change significantly at run time,
+[[ModelFreeLearning]] techniques may be used instead of
+[[AutomatedReasoning]].
 
 [[!tag pattern]]

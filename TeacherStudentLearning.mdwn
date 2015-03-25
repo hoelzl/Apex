@@ -2,9 +2,9 @@
 
 ## Classification
 
+[[!taglink adaptation]], [[!taglink architecture]],
+[[!taglink awareness]], [[!taglink conceptual]], [[!taglink ensemble]]
 [[!taglink edlc/design]]
-[[!taglink architecture]], [[!taglink awareness]],
-[[!taglink conceptual]], [[!taglink ensemble]]
 
 ## Intent
 

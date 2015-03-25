@@ -24,7 +24,13 @@ and the overall system performance may be increased signinficantly.
 
 ## Applicability
 
-Whenever noisy or randomly fluctuating data exists in a system.
+This pattern is applicable when the environment is relatively stable
+and the instability of the models is mostly due to fluctuations in the
+sensor data, or when the awareness mechanism can reliably identify
+changes in the environment that are relevant to its users.  This
+pattern is problematic in cases where the environment can exhibit
+rapid change, it may be an anti-pattern when the users of the
+awareness mechanism are not known.
 
 ## Description/Behavior
 

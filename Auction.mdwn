@@ -2,6 +2,8 @@
 
 ## Specializes
 
+[[CooperationMechanism]]
+
 ## Classification
 
 [[!taglink cooperation]], [[!taglink ensemble]], [[!taglink edlc/design]]
@@ -12,23 +14,37 @@ Cooperation between agents with possibly diverging utility functions.
 
 ## Motivation
 
-The distribution of tasks and resources among the components of an ensembles is a difficult problem.  One general solution mechanism is to collect bids for tasks and resources and to allocate them to the highest bidder.
+The distribution of tasks and resources among the components of an
+ensembles is a difficult problem.  One general solution mechanism is
+to collect bids for tasks and resources and to allocate them to the
+highest bidder.
 
 ## Applicability
 
-Auctions are only applicable if agents can communicate reliably with each other and if agents have [Unique Identity].  In many cases, for example when business secrets are exchanged as part of the bid, [Secure Communication] between agents is necessary.
+Auctions are only applicable if agents can communicate reliably with
+each other and if agents have a unique identity.  In many cases, for
+example when business secrets are exchanged as part of the bid, secure
+communication between agents is necessary.
 
 ## Description/Behavior
 
-There are many different variants of auctions.  For the time being, see [Wooldridge] or [Shoham and Leyton-Brown] for various auction mechanisms.
-
-## Formal Behavior
+There are many different variants of auctions and describing the
+variants goes beyond the current scope of the pattern catalogue.  The
+general principle is that individual agents bid on the price of a
+resource or offer to perform work in exchange for a certain payment.
+An auctioneer collects the bids and decides on the winner of the
+auction (often the highest or second-highest bidder).  For the time
+being, see
+[Multiagent Systems by Shoham and Leyton-Brown](http://www.masfoundations.org)
+for various auction mechanisms.
 
 ## Consequences
 
-## Implementation
-
-## Variants
+Multiple agents can agree on the allocation of tasks without having to
+share a value function or trusting each other.  In general the
+auctioneer has to be trusted to rely on the specified protocol and, if
+the agents compete against each other, to keep the details of the
+offers secret.
 
 ## Related Patterns
 
