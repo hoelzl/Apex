@@ -1,0 +1,4 @@
+[[!meta title="pages tagged validation"]]
+
+[[!inline pages="tagged(validation)" actions="no" archive="yes"
+feedshow=10]]
