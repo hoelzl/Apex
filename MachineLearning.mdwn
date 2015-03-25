@@ -49,6 +49,12 @@ the environment consists of a state and a reward after each action.
 
 ![Structure of a Reinforcement Learner](../Images/reinforcement.svg)
 
+One of the advantages that [[ReinforcementLearning]] has for the
+construction of ensembles operating in unknown or highly variable
+environments is that it can be realized as [[ModelFreeLearning]],
+i.e., it can learn good behavior even in situations where no model of
+the environment is available.
+
 ## Consequences
 
 Machine learning techniques are proving increasingly useful in a wide
@@ -64,7 +70,5 @@ experience with the relevant methods.
 
 [[ReinforcementLearning]], [[AutomatedReasoning]],
 [[AlgorithmicPlanning]]
-
-## Applications
 
 [[!tag pattern]]

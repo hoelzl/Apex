@@ -10,28 +10,81 @@
 
 ## Intent
 
-Learn "good" behaviors from a single numeric reward signal.
-
-## Context
+Learn "good" behaviors from a numeric reward signal.
 
 ## Motivation
 
+Many learning problems for adaptive agents can be expressed as
+controlling a Markov decision process (MDP).  Dynamic programming
+techniques are among the most efficient ways to compute policies for
+MDPs when a model is available.
+
+Reinforcement learning can then be understood as an approximate
+version dynamic-programming which can even be applied when no model of
+the MDP can be obtained.  
+
+Following the introduction of
+single-agent reinforcement learning we discuss issues arising in a
+multi-agent setting and extensions of reinforcement learning for
+multiple independent agents.
+
+
 ## Applicability
+
+Reinforcement learning is applicable whenever it is possible to
+provide an agent with information about the state of its environment
+and the utility of its actions.  It can deal with delayed rewards that
+are only obtained after multiple actions.
+
+Reinforcement techniques require either a simulation model of the
+environment that can be used for training purposes or an environment
+in which safe exploration is possible.  In cases where a complete and
+accurate model of the system's dynamics is available, complete
+solutions obtained via dynamic programming techniques may be more
+appropriate, but even in these cases reinforcement learning may be
+used to obtain an approximate policy if the precise approaches take
+too many resources to complete successfully.
+
 
 ## Diagram/Structure
 
+![Structure of a Reinforcement Learner](../Images/reinforcement.svg)
+
 ## Description/Behavior
 
-## Formal Behavior
+A reinforcement learner always exists in a feedback loop with its
+environment: The environment starts in a state $s_n$, the learner
+performs action $a_n$ and as a consequence receives reward $R_{n+1}$.
+The environment transitions to state $s_{n+1}$ as a result of the
+action.  Both reward and successor state may be stochastic.  The goal
+of the learner is to optimize a (pre-specified) value function over
+the duration of its existence, i.e., it tries to maximize its mean
+expected utility.
 
 ## Consequences
 
-## Implementation
+Reinforcement learning allows agents to learn good behaviors without
+having to know the dynamics of their environment.  Many reinforcement
+learning algorithms are known to converge to the optimal solution
+under relatively weak assumptions. 
 
-## Variants
+Two characteristics of traditional reinforcement learning are
+problematic for many applications to ensembles: (1) By expressing the
+problem as a "flat" MDP, all information about the solution structure
+of the problem is lost, and no learning from shared sub-problems is
+possible.  (2) For all but the smallest state spaces it is impractical
+to maintain a table of all state/action or state/value mappings.
+These problems can be addressed by hierarchical reinforcement
+learning, which only considers solutions that follow a certain
+structure, and by state approximation techniques, which approximate
+the state by a smaller number of parameters.
 
-## Related Patterns
 
 ## Applications
+
+The [Academia](https://github.com/hoelzl/Academia) project and the
+[Waste Removal](https://github.com/hoelzl/WasteRemoval) example for
+the Poem language contain several applications of hierarchical
+reinforcement learning techniques.
 
 [[!tag pattern]]
