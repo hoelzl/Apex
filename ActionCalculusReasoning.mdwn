@@ -6,7 +6,8 @@
 
 ## Classification
 
-[[!taglink reasoning]], [[!taglink awareness]]
+[[!taglink awareness]], [[!taglink reasoning]],
+[[!taglink edlc/validation]]
 
 ## Intent
 

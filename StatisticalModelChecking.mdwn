@@ -1,5 +1,14 @@
 # Statistical Model Checking
 
+## Specializes
+
+Model Checking
+
+
+## Classification
+
+[[!taglink component]], [[!taglink ensemble]], [[!taglink validation]]
+[[!taglink edlc/validation]]
 ## Intent
 
 Validate quantitative properties of a system at design time.
@@ -32,10 +41,6 @@ Furthermore, statistical model checking cannot validate properties that
 can only be established for infinite execution traces. In cases where
 precise behavioral estimates are required, the effort for statistical
 model checking may be prohibitive.
-
-## Classification
-
-component, edlc-verification-and-validation, ensemble, validation
 
 ## Description
 

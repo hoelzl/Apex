@@ -1,0 +1,39 @@
+# Awareness-Based Behavior
+
+## Specializes
+
+## Classification
+
+[[!taglink ensemble]], [[!taglink edlc/design]], [[!taglink edlc/awareness]]
+
+## Aliases
+
+Intelligent System, Cognitive System
+
+## Intent
+
+Allow an ensemble to operate in complex, unknown environments and situations.
+
+## Motivation
+
+Ensembles often have to operate in environments whose properties are not completely known; they often encounter situations where complex decisions have to be taken.  Predetermining the desired behaviors at design time is often difficult or impossible.  A more feasible approach in these situations is to equip the ensemble with an awareness model and goals or a measure of utility and to use this information to compute desirable behaviors at run time.
+
+## Applicability
+
+This pattern is applicable when structural information about the environment is available and either a [Small Ontology] or a [Big Ontology] for the domain can be provided. Furthermore the ensemble has to be able to ascertain its runtime situation with enough precision to ensure that the awareness model predicts future situations with high-enough quality to be useful.  Depending on the size and complexity of the awareness model, significant computational resources and storage might have to be available at run time.\n\nWhen these requirements are not satisfied, [Model-Free Learning] may provide some of the same benefits but potentially require many training runs.  If the run-time resources are not available, [Simulation In The Loop] or [Simulation At Design Time] may be alternatives.
+
+## Description/Behavior
+
+An *awareness mechanism* consists of an *awareness model* which is inversely connected to the environment, *reasoners* that can draw inferences from the awareness model, and a *sensor system* that maintains the inverse connection.  See [[AwarenessMechanism]] for details.  Together with either an explicit specification of the ensemble's goals or a utility function for the system's actions an awareness mechanism can determine actions that are expected to maximize system performance.\n\nAn awareness model is often a [Multi-Model] and a [[DeepModel]], in particular it often combines [[LogicalModel]]s and [[ProbabilisticModel]]s.
+
+## Consequences
+
+## Implementation
+
+## Variants
+
+## Related Patterns
+
+## Applications
+
+[[!tag pattern]]

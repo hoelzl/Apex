@@ -1,3 +1,433 @@
 # Algorithmic Planning
 
+## Specializes
+
+[[AutomatedReasoning]]
+
+## Classification
+
+[[!taglink adaptation]], [[!taglink awareness]],
+[[!taglink reasoning]], [[!taglink edlc/validation]],
+[[!taglink edlc/design]], [[!taglink edlc/awareness]],
+[[!taglink edlc/adaptation]]
+
+## Intent
+
+Enable agents to dynamically discover behaviors that were not foreseen
+at design-time.  Devise long-term strategies based on a combination of
+general knoledge about the environment and the particular situation of
+an agent.
+
+## Motivation
+
+In many cases the exact environment and problems faced by an ensemble
+are not known at design time.  This makes it difficult for designers
+to come up with predefined solution algorithms.  An alternative is to
+provide an agent with general knowledge about its environment and
+facilities to reason about the world, e.g., using
+[[AwarenessBasedBehavior]].  This "reasoning side of acting" can often
+be performed using algorithmic planning techniques.
+
+## Applicability
+
+The system has to be able to determine relevant states of its
+environment and it has to possess enough computational power and
+storage to perform the planning process.  In cases where this is not
+feasible, [[ModelFreeLearning]] may be an alternative.  In addition,
+most planning systems assume that the world is deterministic.
+Planning methods such as [[MDP-basedPlanning]] can deal with uncertain
+worlds but typically place extreme computational demands on the
+system.  In cases where acting in a noon-deterministic world that is
+too large fore algorithmic planning techniques is required,
+[[ReinforcementLearning]] may be an alternative with lower
+computational requirements but a potentially long training phase.
+
+## Description/Behavior
+
+To employ Algorithmic Planning, the desired behavior of a system are
+specified either as goals the system should reach or as (complex)
+actions the system should perform.  If the immediate goals or plans
+are too difficult to reach or execute directly, a goal decomposition
+or action decomposition can be performed using
+[[AlgorithmicPlanning]].  The computed sequence of actions is then
+executed by an execution engine.
+
+## Consequences
+
+Algorithmic planning relies on a model of the environment.  It is
+therefore not applicable in situations where the environment is
+unknown at design time and has to be discovered at run time.  
+
+The system can adapt to differing circumstances of the environment as
+long as the environment remains sufficiently stable that the
+assumptions made in the model remain valid.  It is also possible to
+modify the requirements and goals of the system at runtime as long as
+they remain in the space of possible plans.
+
+## Implementation
+
+The following is an implementation of a simple robot controller using
+HTN planning:
+
+The robot has some sensors that it can use to inquire about the state
+of the environment or its internal subsystems.
+
+    (defconstant +motor-states+
+        '(motor-stopped motor-running))
+    (defconstant +light-sensor-states+
+        '(inside-light-cone outside-light-cone))
+    (defconstant +angle-sensor-states+
+        '(pointing-towards-light pointing-away-from-light))
+    (defconstant +cargo-area-sensor-states+
+        '(loaded unloaded))
+    
+    
+The following model is the domain definition that describes the facts
+we know about the robot and its environment
+
+    (defdomain transport
+        ((:- (motor ?left)
+             (robot ?r ?left ?right ?light-sensor ?angle-sensor ?cargo-area-sensor))
+         (:- (motor ?right)
+             (robot ?r ?left ?right ?light-sensor ?angle-sensor ?cargo-area-sensor))
+         (:- (light-sensor ?light-sensor)
+             (robot ?r ?left ?right ?light-sensor ?angle-sensor ?cargo-area-sensor))
+         (:- (angle-sensor ?angle-sensor)
+             (robot ?r ?left ?right ?light-sensor ?angle-sensor ?cargo-area-sensor))
+         (:- (cargo-area-sensor ?cargo-area-sensor)
+             (robot ?r ?left ?right ?light-sensor ?angle-sensor ?cargo-area-sensor))
+         
+         (:- (robot-is-near-light ?r ?l)
+             (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+                  (light ?l)
+                  (inside-light-cone ?ls ?l)))
+         (:- (robot-is-not-near-light ?r ?l)
+             (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+                  (light ?l)
+                  (outside-light-cone ?ls ?l)))
+    
+         (:- (robot-is-pointing-towards-light ?r ?l)
+             (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+                  (light ?l)
+                  (pointing-towards-light ?as ?l)))
+         (:- (robot-is-not-pointing-towards-light ?r ?l)
+             (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+                  (light ?l)
+                  (not (pointing-towards-light ?as ?l))))
+    
+         (:- (robot-is-turning ?r)
+             (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+                  (or (and (motor-running ?ml) (motor-stopped ?mr))
+                  (and (motor-stopped ?ml) (motor-running ?mr)))))
+         (:- (robot-is-stopped ?r)
+             (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+                  (not (motor-running ?ml))
+                  (not (motor-running ?mr))))
+         (:- (robot-is-driving-straight ?r)
+             (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+                  (motor-running ?ml)
+                  (motor-running ?mr)))
+         (:- (robot-is-moving ?r)
+             (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+                  (or (motor-running ?ml)
+                  (motor-running ?mr))))
+    
+         (:- (robot-is-unloaded ?r)
+             (and (robot ?r ?lm ?mr ?ls ?as ?cas)
+                  (unloaded ?cas)))
+         (:- (robot-is-loaded ?r)
+             (and (robot ?r ?lm ?mr ?ls ?as ?cas)
+                  (loaded ?cas)))
+
+
+The following operators describe the primitive operations that a robot
+can perform and their effects on the environment.
+
+         (:operator (!stop-motor ?m)
+            (motor ?m)
+            ((motor-running ?m))
+            ((motor-stopped ?m)))
+         
+         (:operator (!start-motor ?m)
+            (motor ?m)
+            ((motor-stopped ?m))
+            ((motor-running ?m)))
+         
+         (:operator (!point-towards-light ?as ?l)
+            (and (angle-sensor ?as)
+                 (light ?l))
+            ((pointing-away-from-light ?as ?l))
+            ((pointing-towards-light ?as ?l)))
+    
+         (:operator (!point-away-from-light ?as ?l)
+            (and (angle-sensor ?as)
+                 (light ?l))
+            ((pointing-towards-light ?as ?l))
+            ((pointing-away-from-light ?as ?l)))
+    
+         (:operator (!enter-light-cone ?ls ?l)
+            (and (light-sensor ?ls)
+                 (light ?l))
+            ((outside-light-cone ?ls ?l))
+            ((inside-light-cone ?ls ?l)))
+    
+         (:operator (!exit-light-cone ?ls ?l)
+            (and (light-sensor ?ls)
+                 (light ?l))
+            ((inside-light-cone ?ls ?l))
+            ((outside-light-cone ?ls ?l)))
+
+
+The primitive operations are then combined into more complex compound
+tasks which are typically called *methods* in HTN systems.
+
+         (:method (stop-motor ?m)
+           (motor-stopped ?m)
+           ()
+           (motor-running ?m)
+           ((!stop-motor ?m)))
+         
+         (:method (start-motor ?m)
+           (motor-stopped ?m)
+           ((!start-motor ?m))
+           (motor-running ?m)
+           ())
+         
+         (:method (point-towards-light ?r ?l)
+           (robot ?r ?ml ?mr ?ls ?as ?cas)
+           ((!point-towards-light ?as ?l)))
+    
+         (:method (point-away-from-light ?r ?l)
+           (robot ?r ?ml ?mr ?ls ?as ?cas)
+           ((!point-away-from-light ?as ?l)))
+    
+         (:method (enter-light-cone ?r ?l)
+           (robot ?r ?ml ?mr ?ls ?as ?cas)
+           ((!enter-light-cone ?ls ?l)))
+         
+         (:method (exit-light-cone ?r ?l)
+           (robot ?r ?ml ?mr ?ls ?as ?cas)
+           ((!exit-light-cone ?ls ?l)))
+         
+  
+         (:method (straight-ahead ?r)
+           (robot ?r ?ml ?mr ?ls ?as ?cas)
+           (:unordered (start-motor ?ml) (start-motor ?mr)))
+    
+         (:method (turn-left ?r)
+           (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+            (pointing-towards-light ?as ?l))
+           ((!point-away-from-light ?as ?l)
+            (turn-left ?r))
+               (robot ?r ?ml ?mr ?ls ?as ?cas)
+               (:unordered (stop-motor ?ml) (start-motor ?mr)))
+    
+         (:method (turn-right ?r)
+           (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+            (pointing-towards-light ?as ?l))
+           ((!point-away-from-light ?as ?l)
+            (turn-right ?r))
+               (robot ?r ?ml ?mr ?ls ?as ?cas)
+               (:unordered (start-motor ?ml) (stop-motor ?mr)))
+    
+         (:method (stop ?r)
+           (robot ?r ?ml ?mr ?ls ?as ?cas)
+           (:unordered (stop-motor ?ml) (stop-motor ?mr)))
+    
+         (:method (turn-towards-light ?r ?l)
+           ;; We're pointing away from the light.  Make sure that we turn
+           ;; towards the light.
+           (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+            (light ?l)
+            (not (pointing-towards-light ?as ?l)))
+           (:ordered (turn-left ?r)
+             (!point-towards-light ?as ?l)
+             (stop ?r))
+           ;; We're already pointing towards the light.  Make sure that we
+           ;; stop turning.
+           (and (robot ?r ?ml ?mr ?ls ?as ?cas)
+            (light ?l)
+            (pointing-towards-light ?as ?l))
+           ((stop ?r)))
+         
+         (:method (drive-to-light ?r ?l)
+    
+           just-stop-driving-when-near-the-light
+           (robot-is-near-light ?r ?l)
+           ((stop ?r))
+    
+           keep-on-going-when-driving-towards-the-light
+           (and (robot-is-pointing-towards-light ?r ?l)
+            (robot-is-driving-straight ?r))
+           ((enter-light-cone ?r ?l)
+        (stop ?r))
+    
+           turn-and-drive
+           (and (robot ?r ?ml ?mr ?ls ?as ?cas) (light ?l))
+           ((turn-towards-light ?r ?l)
+        (straight-ahead ?r)
+        (enter-light-cone ?r ?l)
+        (stop ?r)))
+    
+         )) ; end defdomain
+
+    
+The following macros to simplify the generation of tests that use
+parts of the robot.  They are not hygienic and not protected against
+variable capture, so use them with some care.
+    
+    (eval-when (:compile-toplevel :load-toplevel :execute)
+    
+    (defvar *all-generated-problems* '())
+    
+    (defun reset-generated-problem-names ()
+      (setf *all-generated-problems* '()))
+    
+    (defun list-from-to (lower upper)
+      (if (> lower upper)
+          '()
+          (cons lower (list-from-to (1+ lower) upper))))
+    
+    (defun repeat-list-elements (elt-copies list)
+      (let ((result '()))
+        (dolist (elt list)
+          (dotimes (i elt-copies)
+        (declare (ignorable i))
+        (push elt result)))
+        (nreverse result)))
+    
+    (defun repeat-list (elt-copies list-copies list &optional (tails '()))
+      (if (<= list-copies 0)
+          (mapcan #'identity (reverse tails))
+          (repeat-list elt-copies
+               (1- list-copies)
+               list
+               (cons (repeat-list-elements elt-copies list) tails))))
+    
+    ) ; eval-when
+    
+    (defmacro define-single-motor-problem (name target)
+      `(progn
+         ,@(mapcar (lambda (n ml)
+             (let ((problem-name (intern (format nil "~A-~A" name n))))
+               (pushnew problem-name *all-generated-problems*)
+               `(defproblem ,problem-name
+                transport
+                  ((robot r ml mr ls as cas)
+                   (,ml ml))
+                  ,target)))
+               '(1 2)
+               +motor-states+)))
+    
+    (defmacro define-simple-single-motor-problems (&rest names)
+      `(progn
+         ,@(mapcar (lambda (name)
+             `(define-single-motor-problem ,name ((,name ml))))
+               names)))
+    
+    (defmacro define-robot-motor-problem (name target)
+      `(progn
+         ,@(mapcar (lambda (n ml mr)
+             (let ((problem-name (intern (format nil "~A-~A" name n))))
+               (pushnew problem-name *all-generated-problems*)
+               `(defproblem ,problem-name
+                transport
+                  ((robot r ml mr ls as cas)
+                   (,ml ml) (,mr mr))
+                  ,target)))
+               (list-from-to 1 4)
+               (repeat-list 2 1 +motor-states+)
+               (repeat-list 1 2 +motor-states+))))
+    
+    (defmacro define-simple-robot-motor-problems (&rest names)
+      `(progn
+         ,@(mapcar (lambda (name)
+             `(define-robot-motor-problem ,name ((,name r))))
+               names)))
+    
+    (defmacro define-robot-motor-angle-problem (name target)
+      `(progn
+         ,@(mapcar (lambda (n ml mr as)
+             (let ((problem-name (intern (format nil "~A-~A" name n))))
+               (pushnew problem-name *all-generated-problems*)
+               `(defproblem ,problem-name
+                transport
+                  ((robot r ml mr ls as cas)
+                   (light l)
+                   (,ml ml) (,mr mr) (,as as l))
+                  ,target)))
+               (list-from-to 1 8)
+               (repeat-list  4  1 +motor-states+)
+               (repeat-list  2  2 +motor-states+)
+               (repeat-list  1  4 +angle-sensor-states+))))
+    
+    (defmacro define-simple-robot-motor-angle-problems (&rest names)
+      `(progn
+         ,@(mapcar (lambda (name)
+             `(define-robot-motor-angle-problem ,name ((,name r l))))
+               names)))
+    
+    (defmacro define-full-robot-problem (name target)
+      `(progn
+         ,@(mapcar (lambda (n ml mr ls as cas)
+             (let ((problem-name (intern (format nil "~A-~A" name n))))
+               (pushnew problem-name *all-generated-problems*)
+               `(defproblem ,problem-name
+                transport
+                  ((robot r ml mr ls as cas)
+                   (light l)
+                   (,ml ml) (,mr mr) (,ls ls l) (,as as l) (,cas cas))
+                  ,target)))
+               (list-from-to 1 32)
+               (repeat-list 16  1 +motor-states+)
+               (repeat-list  8  2 +motor-states+)
+               (repeat-list  4  4 +light-sensor-states+)
+               (repeat-list  2  8 +angle-sensor-states+)
+               (repeat-list  1 16 +cargo-area-sensor-states+))))
+    
+    (defmacro define-simple-full-robot-problems (&rest names)
+      `(progn
+         ,@(mapcar (lambda (name)
+             `(define-full-robot-problem ,name ((,name r l))))
+               names)))
+    
+Then we can define tasks that we want the robot to achieve and query
+the HTN planner for solutions to these problems.
+
+    (define-simple-single-motor-problems
+        start-motor
+        stop-motor)
+    
+    (define-simple-robot-motor-problems 
+        straight-ahead 
+        turn-left 
+        turn-right
+        stop)
+    
+    (define-simple-robot-motor-angle-problems
+        turn-towards-light)
+    
+    (define-simple-full-robot-problems
+        drive-to-light)
+    
+    (defun find-all-transport-plans ()
+      (let ((result :all-problems-solved))
+        (dolist (problem (reverse *all-generated-problems*))
+          (format t "~&~A~22T~A" problem (get-state problem))
+          (let ((plan (find-plans problem :verbose nil)))
+        (unless plan
+          (setf result :could-not-find-a-solution-for-some-problems))
+        (format t "~&Plan:~22T~A" plan)))
+        result))
+
+
+## Variants
+
+## Related Patterns
+
+## Applications
+
+[[!tag pattern]]
+
+
 [[!tag pattern]]

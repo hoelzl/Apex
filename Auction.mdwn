@@ -1,0 +1,37 @@
+# Auction
+
+## Specializes
+
+## Classification
+
+[[!taglink cooperation]], [[!taglink ensemble]], [[!taglink edlc/design]]
+
+## Intent
+
+Cooperation between agents with possibly diverging utility functions.
+
+## Motivation
+
+The distribution of tasks and resources among the components of an ensembles is a difficult problem.  One general solution mechanism is to collect bids for tasks and resources and to allocate them to the highest bidder.
+
+## Applicability
+
+Auctions are only applicable if agents can communicate reliably with each other and if agents have [Unique Identity].  In many cases, for example when business secrets are exchanged as part of the bid, [Secure Communication] between agents is necessary.
+
+## Description/Behavior
+
+There are many different variants of auctions.  For the time being, see [Wooldridge] or [Shoham and Leyton-Brown] for various auction mechanisms.
+
+## Formal Behavior
+
+## Consequences
+
+## Implementation
+
+## Variants
+
+## Related Patterns
+
+## Applications
+
+[[!tag pattern]]

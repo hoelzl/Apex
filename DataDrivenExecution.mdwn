@@ -1,3 +1,36 @@
 # Data-Driven Execution
 
+## Classification
+
+[[!taglink edlc/modeling]], [[!taglink edlc/adaptation]]
+
+## Intent
+
+## Summary
+
+## Context
+
+## Motivation
+
+## Applicability
+
+## Diagram/Structure
+
+## Description/Behavior
+
+## Formal Behavior
+
+## Consequences
+
+## Implementation
+
+## Variants
+
+## Related Patterns
+
+## Applications
+
+[[!tag pattern]]
+
+
 [[!tag pattern]]

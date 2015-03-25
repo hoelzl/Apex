@@ -1,0 +1,67 @@
+# Decompose Goal Into Subgoals
+
+## Classification
+
+[[!taglink component]], [[!taglink reasoning]], [[!taglink edlc/modeling]]
+
+## Aliases
+
+Divide and Conquer
+
+## Intent
+
+Reach a complex or abstract goal.
+
+## Motivation
+
+The ensemble wants to pursue a goal *G* that is too difficult or
+abstract to reach.
+
+## Applicability
+
+The pattern is applicable for agents that have explicitly specified
+goals and the computational capabilities to reason about goals.
+Furthermore, a mechanism to determine whether the subgoals have been
+reached is often necessary to gainfully employ this pattern.
+
+## Description/Behavior
+
+The current goal *G* is too difficult or abstract to reach. Find a
+sequence (or partially-ordered plan) *G0*, ..., *Gn* of simpler goals
+that together satisfy *G*.  This can either be achieved manually at
+design time, or it can be performed using techniques such as
+[[AlgorithmicPlanning]].
+
+## Implementation
+
+Various strategies for decomposing goals have been described in the
+literature and successfully employed in systems: means-end reasoning]
+(GPS) [[AlgorithmicPlanning]] and in particular HTN planning, plan
+libraries] or hard-coded implementations
+
+## Variants
+
+## Related Patterns
+
+[[AlgorithmicPlanning]]
+
+## Applications
+
+Divide and conques is one of the traditional methods for problem
+solving and has been used long before computers were invented, and it
+is also one of the traditional concepts used for programming systems.
+
+One of the first automated implementations was in the *General Problem
+Solver (GPS)* by Alan Newell and Herbert Simon.  Given a description
+of the possible subtasks in a suitable form, GPS can decompose
+problems such as "How do I get to work?" into subtasks such as "go to
+the garage," "get into the car," "start the car," etc.
+
+Another traditional toy problem for testing mechanisms to decompose
+problem is the blocks world, where tasks of stacking blocks in a
+certain pattern have to be decomposed into atomic actions by a
+reasoning system.  For example the task to stack two blocks on each
+other can be decomposed into "pick up one block," "move it over the
+other block," "set down the block."
+
+[[!tag pattern]]

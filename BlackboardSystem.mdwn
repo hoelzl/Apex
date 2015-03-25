@@ -2,7 +2,8 @@
 
 ## Classification
 
-[[!taglink awareness]], [[!taglink reasoning]]
+[[!taglink awareness]], [[!taglink reasoning]],
+[[!taglink edlc/design]], [[!taglink edlc/awareness]]
 
 ## Intent
 
@@ -23,10 +24,6 @@ This pattern is applicable whenever several knowledge sources
 appropriate when the order in which the knowledge source have to operate
 on the data is not known beforehand; if this knowledge is available, a
 simpler solution might be preferable.
-
-## Classification
-
-awareness, edlc-awareness, knowledge-representation, reasoning
 
 ## Description
 

@@ -1,5 +1,12 @@
 # Distributed Awareness Based Behavior
 
+
+## Classification
+
+[[!taglink awareness]], [[!taglink architecture]],
+[[!taglink ensemble]], [[!taglink edlc/design]]
+
+
 ## Intent
 
 Enable an ensemble to operate in complex, open-ended, partially
@@ -55,10 +62,6 @@ subset of components. If all components have severe resource
 restrictions, an awareness-based architecture may not be possible and
 system architectures such as [[Swarm]] or [[ClientServer]] may be more
 appropriate.
-
-## Classification
-
-awareness, architecture, edlc-design, ensemble
 
 ## Description
 

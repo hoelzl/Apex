@@ -1,12 +1,10 @@
-# Dynamic Code Update
+# Verification and Validation
 
 ## Specializes
 
 ## Classification
 
 ## Aliases
-
-Monkey Patching
 
 ## Intent
 
@@ -32,9 +30,8 @@ Monkey Patching
 
 ## Related Patterns
 
+[[CorrectnessByConstruction]], [[CorrectnessProof]], [[ModelChecking]], [[StatisticalModelChecking]]
+
 ## Applications
-
-[[!tag pattern]]
-
 
 [[!tag pattern]]

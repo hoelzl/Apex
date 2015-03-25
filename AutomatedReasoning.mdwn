@@ -2,7 +2,9 @@
 
 ## Classification
 
-[[!taglink reasoning]], [[!taglink awareness]]
+[[!taglink reasoning]], [[!taglink awareness]],
+[[!taglink edlc/design]], [[!taglink edlc/awareness]],
+[[!taglink edlc/adaptation]]
 
 ## Intent
 

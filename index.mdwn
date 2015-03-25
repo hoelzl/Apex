@@ -1,5 +1,11 @@
 # APEX: The ASCENS Pattern Explorer
 
+The ASCENS project has identified a number of best practices that
+support the development of ensembles.  APEX provides a hyperlinked
+summary of some of these practices and patterns.
+
+## The Patterns
+
 Good starting points to explore the pattern catalog are
 [[AwarenessMechanism]] or [[StatisticalModelChecking]]
 

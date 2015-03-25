@@ -1,12 +1,14 @@
-# Dynamic Code Update
+# Correctness by Construction
 
 ## Specializes
 
+[[VerificationAndValidation]]
+
 ## Classification
 
-## Aliases
+[[!taglink validation]], [[!taglink edlc/validation]]
 
-Monkey Patching
+## Aliases
 
 ## Intent
 
@@ -33,8 +35,5 @@ Monkey Patching
 ## Related Patterns
 
 ## Applications
-
-[[!tag pattern]]
-
 
 [[!tag pattern]]

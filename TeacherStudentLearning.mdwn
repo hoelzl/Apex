@@ -6,10 +6,6 @@
 [[!taglink architecture]], [[!taglink awareness]],
 [[!taglink conceptual]], [[!taglink ensemble]]
 
-## Specializes
-
-[[CooperationMechanism]]
-
 ## Intent
 
 Reduce the computational resources needed for adaptation.
@@ -60,10 +56,10 @@ students, or by the teacher entering a region in which it was not active
 recently.
 
 If multiple teachers are in an ensemble they typically have to
-coordinate their behavior (i.e., employ a CooperationMechanism) in order
-to achieve maximum performance. For example, it is generally not
-advisable that all teachers for a robot swarm are clustered in the same
-region.
+coordinate their behavior (i.e., employ a cooperation mechanism) in
+order to achieve maximum performance. For example, it is generally not
+advisable that all teachers for a robot swarm are clustered in the
+same region.
 
 Even in the case of a single teacher, care has to be taken to avoid
 unintended effects when transferring strategies to the students. In
