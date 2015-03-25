@@ -5,23 +5,20 @@
 [[!taglink awareness]],[[!taglink conceptual]],
 [[!taglink learning]], [[!taglink reasoning]]
 
-## Aliases
-
 ## Intent
 
-## Summary
+Provide agents with faculties that allow them to learn from their
+experience.
 
 ## Context
 
-## Motivation
-
-## Applicability
-
-## Diagram/Structure
+One important aspect of [[AwarenessMechanism]]s is the ability to
+learn from previous experiences.  Machine learning techniques can be
+usefully employed to support this.
 
 ## Description/Behavior
 
-## Formal Behavior
+
 
 ## Consequences
 

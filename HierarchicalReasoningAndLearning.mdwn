@@ -41,20 +41,83 @@ to be possible.
 
 ## Diagram/Structure
 
-![Hierarchical Decomposition](../Images/hierarchical-decomposition.svg)
+![Hierarchical Decomposition](../Images/hierarchical-learning.svg)
 
 ## Description/Behavior
 
-## Formal Behavior
+In their basic form many reasoning techniques operate on a flat state
+space.  For example, reinforcement learning is often considered as a
+technique to find a policy for a flat MDP, i.e., in the simplest case
+a map that assigns an action to each state of the MDP.  Representing
+the problem and solution in this way results in overly large solution
+spaces that make it difficult to learn solutions.
+
+Consider, as an example, the problem of foraging for a single robot
+operating in a grid world.  The robot has to first navigate to a
+source of resources, pick up a resource, go back to its nest and drop
+off the resource.  This phase structure is lost in the transition to
+the usual reinforcement-learning solution.
+
+As a second example, consider the task of transporting a package from
+a certain location in Munich to the Eiffel Tower in Paris.  We would
+like to express the solution to this problem in a hierarchical manner
+of the form
+
+-   Pick up the package at the current location.
+
+-   Go from the current location in Munich to the beginning of the
+    highway in Munich
+  
+-   Navigate the highway to Paris
+
+-   Go from the exit ramp in Paris to the Eiffel Tower.
+
+-   Drop off the package.
+
+Each of these problems can be further composed into subproblems
+resulting in a multi-level hierarchy.
+
+A learning algorithm can use the hierarchical structure for several
+purposes: It can reuse solutions at a certain level of the hierarchy
+multiple times (e.g., shifting from second to third gear is the same
+activity, no matter whether it is performed in Munich or Paris).  Many
+actions are not compatible with the hierarchy and therefore not
+considered during the learning phase.  For example, we should not try
+navigation actions before we have picked up the package, since we
+cannot drop off the package in Paris unless we have picked it up in
+Munich beforehand.  A well chosen hierarchical solution will not allow
+certain driving actions before the package has been picked up,
+resulting in a significantly smaller search space.
 
 ## Consequences
 
+ -   The search space is significantly reduced and therefore the time
+     for learning and the amount of training data needed to converge
+     to a good solution are both significantly reduced.
+
+ -   Knowledge about the problem can be used to devise a good
+     hierarchy (but is also necessary for this task).
+	 
+ -   If the hierarchy is badly chosen, all good solutions may be
+     excluded by the hierarchy.
+
 ## Implementation
 
-## Variants
-
-## Related Patterns
+Hierarchical reasoning and learning methods are relatively easy to
+implement if the learning system directly supports hierarchical
+problem decomposition.  This is, e.g., the case for the Iliad runtime
+for Poem which support hierarchical reinforcement learning.  It is
+also possible to manually orchestrate non-hierarchical reasoning and
+learning components to implement a hierarchical solution, but this
+requires managing the intermediate results and handling the dynamic
+state that is passed from parent to child reasoners (and back) on the
+part of the programmer.
 
 ## Applications
+
+The [Academia](https://github.com/hoelzl/Academia) project and the
+[Waste Removal](https://github.com/hoelzl/WasteRemoval) example for
+the Poem language contain example implementations of hierarchical
+learners.
 
 [[!tag pattern]]
