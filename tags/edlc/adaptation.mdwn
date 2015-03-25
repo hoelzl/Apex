@@ -1,0 +1,4 @@
+[[!meta title="pages tagged edlc/adaptation"]]
+
+[[!inline pages="tagged(edlc/adaptation)" actions="no" archive="yes"
+feedshow=10]]
