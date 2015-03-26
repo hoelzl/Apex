@@ -1,3 +1,0 @@
-# Topological Knowledge Space
-
-[[!tag pattern]]
