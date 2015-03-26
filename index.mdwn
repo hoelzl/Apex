@@ -4,6 +4,20 @@ The ASCENS project has identified a number of best practices that
 support the development of ensembles.  APEX provides a hyperlinked
 summary of some of these practices and patterns.
 
+## Top 10 Best Practices
+
+1.  Goal-oriented requirements engineering
+2.  Use of languages that support dynamic adaptation as first-class concept 
+3.  Performing qualitative and quantitative analysis
+4.  Integrating local and global system aspects
+5.  Adaptation based on control data
+6.  Explicit representation of self-* objectives using a knowledge base
+7.  Monitoring the system and the environment
+8.  Reasoning and learning at runtime
+9.  Development based on control feedback loops
+10. Use of patterns at different levels of abstraction
+
+
 ## The Patterns
 
 Good starting points to explore the pattern catalog are

@@ -18,7 +18,7 @@ another component has performed a certain task.
 ## Diagram/Structure
 
 The system consists of a tuple space, a special form of
-[[KnowledgeRepository]] that stores arbitrary tuples, and one or more
+knowledge repository that stores arbitrary tuples, and one or more
 agents (also called Service Components, SCs).
 
 ## Description/Behavior

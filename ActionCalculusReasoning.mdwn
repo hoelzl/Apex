@@ -26,13 +26,12 @@ all three types of reasoning.
 
 ## Description/Behavior
 
-Action Calculus Reasoning is a special case of
-[[AutomatedReasoning]] where the [[KnowledgeRepository]] is
-represented as a set of formulae in an actions-calculus and the
-reasoning process is either full inference in predicate logic or a
-simpler form of reasoning, e.g., SLDNF resolution.  Suitable action
-calculi are, e.g., the situation calculus, the fluent calculus or the
-event calculus.
+Action Calculus Reasoning is a special case of [[AutomatedReasoning]]
+where the knowledge repository is represented as a set of formulae in
+an actions-calculus and the reasoning process is either full inference
+in predicate logic or a simpler form of reasoning, e.g., SLDNF
+resolution.  Suitable action calculi are, e.g., the situation
+calculus, the fluent calculus or the event calculus.
 
 
 ## Consequences

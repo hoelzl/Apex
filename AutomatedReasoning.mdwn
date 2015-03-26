@@ -36,15 +36,15 @@ operators or supervisors.
 
 ## Implementation
 
-Because of the wide variety of Automated Reasoning mechanisms there
-is no universal architecture shared by them all. A typical
-architecture of an Automated Reasoning mechanisms consists of a
-[[KnowledgeRepository]] and one or more application-domain-independent
-reasoning engines, possibly augmented with domain-specific reasoners.
-The results of the reasoning engine when faced with a query is
-typically a plan comprised of a sequence of actions that are supposed
-to reach the desired goal when executed starting with the current
-state of the system.
+Because of the wide variety of Automated Reasoning mechanisms there is
+no universal architecture shared by them all. A typical architecture
+of an Automated Reasoning mechanisms consists of a knowledge
+repository and one or more application-domain-independent reasoning
+engines, possibly augmented with domain-specific reasoners.  The
+results of the reasoning engine when faced with a query is typically a
+plan comprised of a sequence of actions that are supposed to reach the
+desired goal when executed starting with the current state of the
+system.
 
 ## Related Patterns
 

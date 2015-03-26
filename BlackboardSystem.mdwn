@@ -27,7 +27,7 @@ simpler solution might be preferable.
 
 ## Description
 
-A blackboard system consist of a [[KnowledgeRepository]] (blackboard)
+A blackboard system consist of a knowledge repository (blackboard)
 that is shared by several reasoners, commonly called *knowledge
 sources* in this context. All reasoners can access the knowledge
 repository, but only a single reasoner is active at any time. The
