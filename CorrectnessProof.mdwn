@@ -22,13 +22,60 @@ support fully automated proofs; these systems are summarized in the
 [[CorrectnessByConstruction]] pattern.  Here we are concerned with
 systems whose theorem prover requires significant human intervention.
 
-Some systems have a fully automated prover that can be guided by the
+Some systems have a semi-automatic prover that can be guided by the
 user via the introduction of, e.g., Lemmata or induction rules.  An
-example of such a system is ACL2.
+example of such a system is ACL2.  Other systems, such as PVS, Coc or
+Isabelle, are proof assistants that support the user in the
+construction of a proof without trying to automate the theorem proving
+process.  The borders between semi-automatic provers and proof
+assistants is not strict, however, since proof assistants commonly
+feature powerful proof strategies that can prove many theorems (in
+particular all propositional formula) with just a single proof
+command.
 
 ## Description/Behavior
 
+Depending on the languages and systems used, formal verification may
+serve various goals.  Some proof systems are directly built on an
+executable logic, e.g., the ACL2 theorem prover whose logic is a
+purely applicative subset of Common Lisp.  In these cases the
+executable program is directly written in the proof system and the
+desired properties are proven with regards to the program itself.
+
+Other theorem provers may be built on logics that are not fully
+executable; for example the PVS system uses a form of second-order
+logic that allows both executable and non-executable specifications.
+These systems may be used in different ways.  One alternative is, to
+prove properties of the specification only, and manually implement the
+specification in a programming language such as Java or C.  In this
+case the correctness proof shows only that the specification itself
+has certain properties; it is not concerned with questions about the
+implementation.  The advantage of this approach over informal
+specifications is that the developers can be certain that the
+properties they have proven correct actually hold for their
+specification.  Such high-level specification are often easier to
+write and understand than executable specification and thus reduce the
+time for writing the specification as well as the effort of proving
+properties.  The disadvantage of this approach is that the proof
+provides no information at all about the implementation.
+
+If the logic of the proof system is partially executable it is also
+possible to write an abstract, non-executable specification $S_1$ that
+can be used to prove properties that hold in the general case, and an
+executable refinement of $S_1$, $S_2$ that serves as implementation.
+An example for this is shown in the Implementation section.
+
+
 ## Consequences
+
+Properties that have been formally proved can be assumed to hold with
+a high degree of confidence.  However, the task of formally specifying
+a system and proving its correctness is typically labor intensive and
+requires expert developers, resulting in greatly increased development
+costs.  In addition it is important to ensure that the operational
+environment of the system agrees with the specification; furthermore
+formal proof provides no guarantees in cases of hardware failure or
+other unforeseen events.
 
 ## Implementation
 
@@ -43,18 +90,34 @@ very simple robot navigation problem expressed in PVS.
       IMPORTING reals@sqrt, reals@sqrt_approx
     
       t, t1, t2: VAR time
-    
+	  
+The position of a robot is specified as a tuple with `x` and `y`
+coordinates.
+	  
       pos: TYPE = [# x: real, y: real #]
     
       p, p1, p2, target: VAR pos
-    
+
+`d` denotes the usual Euclidean distance.
+
       d(p1, p2): real =
           LET x1 = x(p1) - x(p2), y1 = y(p1) - y(p2) IN sqrt(x1 * x1 + y1 * y1)
-    
+
+`dpp` is a simple lemma about the distance function that states that
+the distance from a point to itself is 0.
+
       dpp: LEMMA d(p, p) = 0
     
       target_dist: posreal
     
+`robot` is declared as a type consisting of a strategy (a function
+mapping every time to a position), a start position and a
+time-dependent velocity.  An additional constraint that the position
+of the robot at time `zero` corresponds to the specified start
+position.  Note that this specification is not complete since it
+allows, e.g., non-continuous strategies that "teleport" the robot from
+one location to another without consuming time.
+
       robot: TYPE =
             {r:
                [# strategy: [time -> pos],
@@ -63,7 +126,11 @@ very simple robot navigation problem expressed in PVS.
                      strategy(r)(zero) = start(r)}
     
       r, r1, r2: VAR robot
-    
+
+
+The position of a robot at time `t` is the value of its strategy,
+evaluated at `t`.
+
       pos(r, t): pos = strategy(r)(t)
     
       reaches(r, target): bool =
@@ -94,6 +161,9 @@ simple robot that always moves in the direction of its target:
     
       t, t1, t2: VAR real
     
+The simple strategy `move_towards_target` moves the robot towards its
+target location with constant velocity `v`.
+	
       move_towards_target(start, v)(t): pos =
           IF t = 0 THEN start
           ELSE LET t1 = d(start, target) / v IN
@@ -106,6 +176,9 @@ simple robot that always moves in the direction of its target:
     
       x, y: VAR real
     
+The following lemmas are needed in the proof that robots actually
+reach their target.
+	
       zero_square: LEMMA x * x = 0 => x = 0
     
       square_ge_zero: LEMMA x * x >= 0
@@ -118,7 +191,11 @@ simple robot that always moves in the direction of its target:
     
       r, rr: VAR robot
     
-      mtt_robots_reach_target: PROPOSITION
+This lemma states that there exists a velocity `v` such that a robot
+moving with v reaches its target.  (Actually this holds for every `v`
+different from 0.)
+	
+      mtt_robots_reach_target: LEMMA
         (EXISTS v: strategy(r) = move_towards_target(start(r), v)) =>
          reaches(r, target)
     
@@ -146,8 +223,15 @@ simple robot that always moves in the direction of its target:
     
       robots: set[robot] = union(singleton(r1), singleton(r2))
     
+We have only specified `mtt` robots as members of `robots`; therefore
+the following lemma holds.  Note that here we reason about a constant
+object, otherwise this lemma would not hold.
+
       all_robots_are_mtt: LEMMA member(r, robots) => mtt_robot?(r)
     
+This proposition states that all robots we created actually reach
+their target.
+	
       all_robots_reach_target: PROPOSITION
         member(r, robots) => reaches(r, target)
     

@@ -1,38 +1,101 @@
 # Dynamic Code Update
 
-## Specializes
-
 ## Classification
+
+[[!taglink adaptation]], [[!taglink implementation]]
 
 ## Aliases
 
-Monkey Patching
+Runtime Monkey Patching, Hot Update
 
 ## Intent
 
-## Summary
-
-## Context
+Update a running program to improve its performance or fix bugs.
 
 ## Motivation
 
+Sometimes it is desirable to update a running program without stopping
+its execution.  In certain systems this can be achieved by dynamically
+loading new code that replaces the old code into the system.
+
 ## Applicability
 
-## Diagram/Structure
+The pattern is applicable when the underlying system supports the
+replacement of code at run time and a system update or patch is
+required.
 
 ## Description/Behavior
 
-## Formal Behavior
+The new code replaces the old code; if the language supports updating
+of objects currently existing in memory, existing data structures are
+updated to a new object model.
 
 ## Consequences
 
+Systems allowing dynamic code updates permit flexible maintenance and
+upgrades, however, depending on the kind of support for dynamic
+updates in the runtime environment, dynamic code updates may introduce
+non-reproducible system configurations.
+
 ## Implementation
 
-## Variants
+Suppose a program is running the following Common Lisp code:
+
+    (defclass customer ()
+      ((id :accessor id :initarg :id)
+       (given-name :accessor given-name :initarg :given-name)
+       (last-name :accessor last-name :initarg :last-name)))
+    
+    (defmethod greeting ((c customer))
+      (format t "~&Hello, ~A ~A (~A)!" (given-name c) (last-name c) (id c)))
+    
+    (defvar *customer-1* (make-instance 'customer
+    				    :id 1
+    				    :given-name "Joe"
+    				    :last-name "Random"))
+    
+    (defvar *customer-2* (make-instance 'customer
+    				    :id 2
+    				    :given-name "Jane"
+    				    :last-name "Doe"))
+    
+    (defun test ()
+      (greeting *customer-1*)
+      (greeting *customer-2*))
+
+Then a call to `(test)` will result in the following output:
+
+	Hello, Joe Random (1)!
+	Hello, Jane Doe (2)!
+
+If subsequently the following code is loaded into the system:
+
+    (defmethod update-instance-for-redefined-class :before
+        ((c customer) added deleted plist &key)
+      (let ((given-name (getf plist 'given-name))
+    	(last-name (getf plist 'last-name)))
+        (setf (name c) (format nil "~A ~A" given-name last-name))))
+    
+    (defclass customer ()
+      ((id :accessor id :initarg :id)
+       (name :accessor name :initarg :name)))
+    
+    (defmethod greeting ((c customer))
+      (format t "~&Hi, ~A (~A)!" (name c) (id c)))
+
+After that time, a call to `(test)` will print the following output
+
+	Hi, Joe Random (1)!
+	Hi, Jane Doe (2)!
+
+And inspection of the object will reveal that they now have one
+instance variable called `name`.
 
 ## Related Patterns
 
-## Applications
+If the need for changes in a part of a program is known beforehand,
+[[DataDrivenExecution]] is a less risky alternative to Dynamic Code
+Update.
 
 [[!tag pattern]]
 

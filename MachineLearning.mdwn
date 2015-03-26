@@ -68,7 +68,7 @@ experience with the relevant methods.
 
 ## Related Patterns
 
-[[ReinforcementLearning]], [[AutomatedReasoning]],
+[[DataDrivenExecution]], [[ReinforcementLearning]], [[AutomatedReasoning]],
 [[AlgorithmicPlanning]]
 
 [[!tag pattern]]

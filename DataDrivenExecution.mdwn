@@ -4,33 +4,96 @@
 
 [[!taglink edlc/modeling]], [[!taglink edlc/adaptation]]
 
+## Aliases
+
+Rules Engine, Production System
+
+*TODO*: This pattern should be split: Data-Driven Execution is a more
+ general concept than production systems and the following text
+ switches between both kinds of systems.
+
 ## Intent
 
-## Summary
+Permit the updating of a system's dynamic behavior at runtime.
 
 ## Context
 
-## Motivation
-
-## Applicability
+Often the program executed by a system should be changeable while the
+system is executing.  For example, it should be possible to update the
+processing rules used by a system to process orders in an online shop
+while the system is running.  This can be achieved by storing the
+business rules of the system as data structure and interpret the data
+at run time.
 
 ## Diagram/Structure
 
+![Structure of a data-driven System](../Images/interpreter.svg)
+
 ## Description/Behavior
 
-## Formal Behavior
+In a data-driven system, the rules for some part of the system's
+operation are stored in a data structure that can be modified at run
+time.  In the diagram above, this data store is called the "Business
+Rules", the program that interprets the business rules is called the
+"Interpreter".  Changes in the business rules can be made
+independently of the application logic, according to the needs of the
+business process that the system is supposed to support.  When the
+relevant operation is triggered, the main program executive invokes
+the business-rules interpreter to perform the requested computation
+and resumes execution after the interpreter has finished.
+
+Another example of a data-driven execution mechanism are systems using
+[[ReinforcementLearning]].  In these systems, the stored $V$ or
+$Q$-function is the data, and the learning subsystem serves both as
+the interpreter of the data and as source for data updates.
 
 ## Consequences
 
+Data-driven execution can span a wide array of possible behaviors.  In
+simple cases the data consists of simple condition/action rules for
+atomic conditions or data tables for a decision procedure.  On the
+other end of the spectrum are many kinds of business-rules engines
+that support complex dataflows with iterations, concurrent execution
+of tasks, synchronization and orchestration of different systems, etc.
+
+Increasing flexibility of the data-driven parts of the system's
+execution may enhance the flexibility of a system, it also makes it
+more difficult to ensure that the system works as intended.  Often
+complex rule bases with overlapping triggers and guards contain errors
+that only trigger infrequently and are therefore hard to track down
+and eliminate.
+
+The [following page](http://herzberg.ca.sandia.gov/guidelines.shtml)
+contains further guidelines whether the use of a rules engine might be
+appropriate in a given context.
+
 ## Implementation
 
-## Variants
+A simple rule engine can be described by the following pseudo code:
 
-## Related Patterns
+	class operation
+	  invoke: () -> ()
+
+	var rules = hash[string->operation]
+
+	rules["hello"] = new operation(fun () print("Hello!"))
+	rules["goodbye"] = new operation(fun () print("Goodbye!"))
+	
+	fun invoke_rules(head)
+	  var rule = rules[head]
+	  if rule then
+	    rule.invoke
+
+Real implementations frequently use much more involved strategies to
+efficiently select and trigger rules.  One popular algorithm for the
+implementation of pattern matching and rule selection is the [Rete
+algorithm](https://en.wikipedia.org/wiki/Rete_algorithm).
 
 ## Applications
 
-[[!tag pattern]]
+Business rules systems are widely used in enterprise systems; the
+[SOAR](https://en.wikipedia.org/wiki/Soar_(cognitive_architecture))
+system is a cognitive architecture built on production rules.
 
 
 [[!tag pattern]]
