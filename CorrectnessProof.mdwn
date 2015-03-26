@@ -1,9 +1,5 @@
 # Correctness Proof
 
-## Specializes
-
-[[VerificationAndValidation]]
-
 ## Classification
 
 [[!taglink validation]], [[!taglink edlc/validation]]

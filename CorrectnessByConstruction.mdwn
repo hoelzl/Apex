@@ -1,9 +1,5 @@
 # Correctness by Construction
 
-## Specializes
-
-[[VerificationAndValidation]]
-
 ## Classification
 
 [[!taglink ensemble]], [[!taglink validation]], [[!taglink edlc/validation]]
@@ -22,12 +18,12 @@ the program itself.
 ## Context
 
 For many systems high reliability and freedom from errors is
-important.  Many [[VerificationAndValidation]] techniques can be used
-at design time to improve the confidence that the system will perform
-as expected, and runtime mechanisms to monitor the system's
-performance and take measures at run time if problems are detected.
-However, verification and validation techniques are often
-time-consuming and require a lot of manual input.
+important.  Many verification and validation techniques can be used at
+design time to improve the confidence that the system will perform as
+expected, and runtime mechanisms to monitor the system's performance
+and take measures at run time if problems are detected.  However,
+verification and validation techniques are often time-consuming and
+require a lot of manual input.
 
 In some instances it is possible to build the system in such a manner
 that the construction process itself guarantees the correctness of the
