@@ -1,0 +1,34 @@
+robot_01[time: TYPE+, zero: time, <=: (preorder?[time])]: THEORY
+ BEGIN
+
+  reals: LIBRARY = "/Users/tc/Prog/Lisp/PVS/pvs/nasalib/reals"
+
+  IMPORTING reals@sqrt, reals@sqrt_approx
+
+  t, t1, t2: VAR time
+
+  pos: TYPE = [# x: real, y: real #]
+
+  p, p1, p2, target: VAR pos
+
+  d(p1, p2): real =
+      LET x1 = x(p1) - x(p2), y1 = y(p1) - y(p2) IN sqrt(x1 * x1 + y1 * y1)
+
+  dpp: LEMMA d(p, p) = 0
+
+  target_dist: posreal
+
+  robot: TYPE =
+        {r:
+           [# strategy: [time -> pos],
+              start: pos,
+              velocity: [time -> posreal] #] |
+                 strategy(r)(zero) = start(r)}
+
+  r, r1, r2: VAR robot
+
+  pos(r, t): pos = strategy(r)(t)
+
+  reaches(r, target): bool =
+      EXISTS t1: FORALL t: t1 <= t => d(pos(r, t), target) <= target_dist
+ END robot_01

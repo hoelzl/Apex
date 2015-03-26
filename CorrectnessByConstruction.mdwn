@@ -39,23 +39,37 @@ sub-servics.
 
 ## Description/Behavior
 
-Correctness by Construction relies on the use of static verification
-techniques throughout all stages of the development process.  Often,
-programming languages with strong type systems (e.g., dependently
-typed languages) that express the specification of many properties as
-types are proposed as foundation of the implementation.
+The main idea behind Correctness by Construction is to ensure for
+every step of the development process.  It relies on a rigorous
+definition of the requirements, a precise specification of the
+system's behavior, and traceability between the stages of the
+development process. Often static verification techniques are used
+throughout all stages of the development process, and programming
+languages with strong type systems (e.g., dependently typed languages)
+are used.
+
+Which properties are "correct by construction" strongly depends on the
+details of the static checks and construction principles that are
+used.  Techniques used to ensure correctness by construction are, for
+example
+
+ -  Checking of coding standards; eliminating undefined features of
+    the implementation language
+	
+ -  Extended type checking
+ 
+ -  Design by Contract (e.g., SPARK for ADA)
+ 
+ -  Data-flow analysis, theorem proving and abstract interpretation
+    (e.g., JML and ESC2 for Java)
+	
 
 ## Consequences
 
-In theory the resulting program is guaranteed to be correct with
-regards to its specification.  In practice, 
-
-## Implementation
-
-## Variants
-
-## Related Patterns
-
-## Applications
+Correctness by Construction (CbC) can ensure that the implementation
+satisfies the requirements and that the final system satisfies those
+properties which are in the scope of the approach CbC used.  Therefore
+it requires a detailed specification that changes little during the
+development of the system.
 
 [[!tag pattern]]

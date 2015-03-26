@@ -1,0 +1,18 @@
+(robot_01
+ (d_TCC1 0
+  (d_TCC1-1 nil 3615490823 ("" (subtype-tcc) nil nil)
+   ((real_times_real_is_real application-judgement "real" reals nil))
+   nil))
+ (dpp 0
+  (dpp-2 "\"failed proof attempt\"" 3615488727
+   ("" (skosimp*) (("" (grind) (("" (postpone) nil nil)) nil)) nil)
+   ((real_minus_real_is_real application-judgement "real" reals nil)
+    (d const-decl "real" robot_01 nil)
+    (sqrt_0 formula-decl nil sqrt "reals/"))
+   shostak)
+  (dpp-1 nil 3615482335 ("" (skosimp*) (("" (grind) nil nil)) nil)
+   ((real_minus_real_is_real application-judgement "real" reals nil)
+    (d const-decl "real" robot_01 nil)
+    (sqrt_0 formula-decl nil sqrt "reals/"))
+   shostak)))
+

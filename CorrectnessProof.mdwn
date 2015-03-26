@@ -6,34 +6,166 @@
 
 ## Classification
 
-[[!taglink reasoning]], [[!taglink validation]],
-[[!taglink edlc/validation]]
-
-## Aliases
+[[!taglink validation]], [[!taglink edlc/validation]]
 
 ## Intent
 
-## Summary
+Show that a software system is correct by using mathematical proof
+techniques.
 
 ## Context
 
-## Motivation
+One way to ensure that a program satisfies its specification is to
+prove its correctness with regards to a formalization of the
+specification in a suitable logic.  Some specification languages
+support fully automated proofs; these systems are summarized in the
+[[CorrectnessByConstruction]] pattern.  Here we are concerned with
+systems whose theorem prover requires significant human intervention.
 
-## Applicability
-
-## Diagram/Structure
+Some systems have a fully automated prover that can be guided by the
+user via the introduction of, e.g., Lemmata or induction rules.  An
+example of such a system is ACL2.
 
 ## Description/Behavior
-
-## Formal Behavior
 
 ## Consequences
 
 ## Implementation
 
-## Variants
+The [following specification](../robot_01.pvs) shows an example for a
+very simple robot navigation problem expressed in PVS.
+
+    robot_01[time: TYPE+, zero: time, <=: (preorder?[time])]: THEORY
+     BEGIN
+    
+      reals: LIBRARY = "/Users/tc/Prog/Lisp/PVS/pvs/nasalib/reals"
+    
+      IMPORTING reals@sqrt, reals@sqrt_approx
+    
+      t, t1, t2: VAR time
+    
+      pos: TYPE = [# x: real, y: real #]
+    
+      p, p1, p2, target: VAR pos
+    
+      d(p1, p2): real =
+          LET x1 = x(p1) - x(p2), y1 = y(p1) - y(p2) IN sqrt(x1 * x1 + y1 * y1)
+    
+      dpp: LEMMA d(p, p) = 0
+    
+      target_dist: posreal
+    
+      robot: TYPE =
+            {r:
+               [# strategy: [time -> pos],
+                  start: pos,
+                  velocity: [time -> posreal] #] |
+                     strategy(r)(zero) = start(r)}
+    
+      r, r1, r2: VAR robot
+    
+      pos(r, t): pos = strategy(r)(t)
+    
+      reaches(r, target): bool =
+          EXISTS t1: FORALL t: t1 <= t => d(pos(r, t), target) <= target_dist
+     END robot_01
+
+This specification results in two proof obligations: one
+type-correctness-condition for the distance function (which can be
+discharged automatically by PVS) and a proof for the lemma `dpp` which
+can be proved very easy by first invoking the iterated Skolemization
+and simplification rule of PVS (`skosimp*`) and then invoking decision
+procedures and propositional simplification (`grind`).  The full proof
+can be found [here](../robots_01.prf).
+
+This specification can be [implemented](../robots_02.pvs) by a very
+simple robot that always moves in the direction of its target:
+
+    robot_02: THEORY
+     BEGIN
+    
+      IMPORTING robot_01[real, 0, <=]
+    
+      start, p, p1, p2: VAR pos
+    
+      target: pos = (# x := 0.0, y := 0.0 #)
+    
+      v: VAR posreal
+    
+      t, t1, t2: VAR real
+    
+      move_towards_target(start, v)(t): pos =
+          IF t = 0 THEN start
+          ELSE LET t1 = d(start, target) / v IN
+                 IF t1 = 0 OR t1 <= t THEN target
+                 ELSE LET percent = t / t1 IN
+                        (# x := x(start) + percent * (x(target) - x(start)),
+                           y := y(start) + percent * (y(target) - y(start)) #)
+                 ENDIF
+          ENDIF
+    
+      x, y: VAR real
+    
+      zero_square: LEMMA x * x = 0 => x = 0
+    
+      square_ge_zero: LEMMA x * x >= 0
+    
+      pos_sum_zero: LEMMA x >= 0 AND y >= 0 AND x + y = 0 => (x = 0 AND y = 0)
+    
+      sum_of_squares_zero: LEMMA x * x + y * y = 0 => (x = 0 AND y = 0)
+    
+      mtt_0_is_start: LEMMA move_towards_target(start, v)(0) = start
+    
+      r, rr: VAR robot
+    
+      mtt_robots_reach_target: PROPOSITION
+        (EXISTS v: strategy(r) = move_towards_target(start(r), v)) =>
+         reaches(r, target)
+    
+      mtt_robot?(r): bool =
+          EXISTS v:
+            strategy(r) = move_towards_target(start(r), v) AND
+             (FORALL t: velocity(r)(t) = v)
+    
+      make_robot(x, y: real, v: posreal): robot =
+          LET start = (# x := x, y := y #) IN
+            (# start := start,
+               strategy := move_towards_target(start, v),
+               velocity := LAMBDA (t): v #)
+    
+      r1: robot = make_robot(1.0, 1.0, 0.1)
+      r2: robot = make_robot(-10.0, 5.0, 0.5)
+    
+      r1_is_mtt: LEMMA mtt_robot?(r1)
+      r2_is_mtt: LEMMA mtt_robot?(r2)
+    
+      move(r, t): robot =
+          LET new_start = strategy(r)(t) IN
+            r WITH [start := new_start,
+                    strategy := move_towards_target(new_start, velocity(r)(0))]
+    
+      robots: set[robot] = union(singleton(r1), singleton(r2))
+    
+      all_robots_are_mtt: LEMMA member(r, robots) => mtt_robot?(r)
+    
+      all_robots_reach_target: PROPOSITION
+        member(r, robots) => reaches(r, target)
+    
+      rs: VAR set[robot]
+    
+      move(rs, t): set[robot] =
+        {r | exists rr: member(rr, robots) AND r = move(rr, t)}
+     END robot_02
+
+The proof that this specification is correct is straightforward but
+slightly more involved than the trivial proof shown above.  The
+easiest way to follow it is to download the
+[proof file](../robots_02.prf) and follow the individual steps in PVS.
+
 
 ## Related Patterns
+
+[[CorrectnessByConstruction]]
 
 ## Applications
 

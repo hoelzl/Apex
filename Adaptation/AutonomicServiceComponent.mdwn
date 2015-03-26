@@ -1,6 +1,7 @@
 # Autonomic Service Component
 
 ## Classification
+
 [[!taglink adaptation]],
 [[!taglink component]],
 [[!taglink ascens/adaptation]],
