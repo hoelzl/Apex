@@ -23,18 +23,48 @@ efficient to share parts of the awareness mechanism.
 
 ## Diagram/Structure
 
+![Shared Awareness Mechanism](SharedAwarenessMechanism)
+
 ## Description/Behavior
 
-## Formal Behavior
+A Shared Awareness Mechanism is an awareness mechanism that can be
+accessed by multiple Service Components (SCs).  It may me realized in
+many ways: a traditional solution is to realize it as a service that
+may be accessed by multiple SCs.  If the specific features of an
+ensemble make this impractical, other realizations are possible.  For
+example, agents may manipulate or leave markers in the environment to
+store shared information without relying on non-local communication.
+These stigmergic solutions are commonly found in biological systems
+and also used in, e.g., swarm robotics where global communication
+facilities are often not available.
 
 ## Consequences
 
-## Implementation
+Shared Awareness Mechanisms can provide awareness to multiple
+components in a system without requiring the components to repeatedly
+perform the necessary data gathering and calculations.  This reduces
+the storage and computational resource requirements for individual
+agents.  It also allows designers to exploit the property that
+multiple agents relying on a shared awareness mechanism can be sure to
+agree in their assessments of situations (at the same point in time).
 
-## Variants
-
-## Related Patterns
+Shared Awareness Mechanisms may be problematic in systems that rely on
+slightly different behaviors for correct operation, or in scenarios
+where Service Components with different internal models and
+capabilities have to work together.  In the latter case, a
+[[BlackBoardSystem]] may be more appropriate than sharing the complete
+awareness mechanism.
 
 ## Applications
+
+Shared Awareness Mechanisms are widely used in situation where simple
+Service Components operate in an environment that requires awareness
+of global properties.  For example, in the ASCENS rescue scenario, a
+number of robots acts as landmarks that allow the rescue robots to
+navigate to their targets.  This consititues a distributed awareness
+mechanism where neither the landmarks nor the rescue robots have
+global awareness of the system, but where the combination of the local
+awareness of the landmarks about their immediate vicinity serves to
+provide global awareness.
 
 [[!tag pattern]]
